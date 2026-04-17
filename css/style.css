@@ -1,0 +1,1555 @@
+:root {
+  --bg-dark: #0a0a0c; /* Um preto mais "vivo" que o puro #000 */
+  --accent: #d4af37;  /* Seu dourado atual */
+  --glass: rgba(255, 255, 255, 0.03);
+}
+
+body {
+  background-color: var(--bg-dark);
+  /* Remova ou suavize o radial-gradient branco que está nas bordas */
+}
+
+.glass-card, .escala-card, .resumo-card, .tech-table {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px); /* Isso cria o efeito de vidro fosco */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  background: var(--bg-dark);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative; /* Adicione apenas esta linha */
+  padding-bottom: 60px; /* Adicione isso (ajuste conforme a altura do seu rodapé) */
+}
+
+/* Fundo Dinâmico */
+body::before {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(212, 175, 55, 0.08) 0%,
+    transparent 70%
+  );
+  filter: blur(80px); /* Suaviza as bordas do gradiente */
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.secao {
+  animation: fadeInSlide 0.6s ease-out forwards;
+}
+
+/* segunda camada pra dar profundidade */
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+
+  background: radial-gradient(
+    circle,
+    rgba(255,215,0,0.04) 0%,
+    transparent 60%
+  );
+
+  animation: goldMoveReverse 35s linear infinite;
+}
+
+@keyframes goldMove {
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(10%, 10%) rotate(360deg);
+  }
+}
+
+@keyframes goldMoveReverse {
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(-10%, -10%) rotate(-360deg);
+  }
+}
+
+/* Navbar */
+.navbar {
+  height: 72px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+}
+
+.nav-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
+}
+
+.nav-links li {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: 0.3s;
+}
+
+.nav-links li.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+/* Layout */
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 35px;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+}
+
+#page-title {
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: -1px;
+  text-shadow: 0 10px 20px rgba(0,0,0,0.5); /* Sombra para destacar do fundo */
+}
+
+.subtitle {
+  color: var(--accent); /* Destaque o subtítulo com o dourado */
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Glass Card Missão */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 35px;
+  margin-bottom: 40px;
+}
+
+.lista-atividades {
+  padding-left: 20px;
+  margin-top: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Grid Redes Sociais - FOTOS INTEIRAS E ALTO CONTRASTE */
+
+/* Alinha os cards um ao lado do outro */
+.social-grid {
+  display: flex;
+  justify-content: center; /* Centraliza o grupo na página */
+  align-items: center;
+  gap: 40px;               /* Espaço entre um ícone e outro */
+  flex-wrap: wrap; 
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.social-label {
+  font-size: 0.75rem;
+  color: #fff;
+  opacity: 0.8;
+}
+
+/* Remove o sublinhado azul e prepara o card */
+.social-card {
+  text-decoration: none !important; /* Força a remoção da linha azul */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  background: transparent;
+  border-radius: 12px;
+}
+
+.social-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-3px);
+}
+
+/* Organiza o conteúdo interno (Ícone em cima, Texto embaixo) */
+.social-content {
+  display: flex;
+  flex-direction: column; /* Alinha em coluna */
+  align-items: center;    /* Centraliza os itens da coluna */
+  justify-content: center;
+  gap: 8px;               /* Espaçamento entre ícone e texto */
+}
+
+.social-content strong {
+  font-size: 0.75rem;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+}
+
+
+/* Escala Cards Semanal */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  align-items: stretch; /* Adicione esta linha */
+}
+
+.escala-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  border: none; 
+  transition: 0.4s;
+  z-index: 1;
+  display: flex;       /* Adicione isso */
+  flex-direction: column; /* Adicione isso */
+  height: 100%;        /* Adicione isso */
+}
+
+.escala-card:hover {
+  transform: translateY(-12px);
+  z-index: 100;
+  border-color: #fff;
+}
+
+.card-header {
+  /* Reduzi o padding lateral para 12px para ganhar espaço nas bordas */
+  padding: 15px 12px; 
+  border-bottom: 1px solid var(--border);
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px; /* Espaço mínimo entre texto e data */
+}
+
+/* Título (Esquerda) - Puxando tudo para o canto */
+.card-header .titulo-culto,
+.card-header span:first-child {
+  flex: 1; /* Ocupa todo o espaço que sobrar da data */
+  text-align: left; /* Garante que comece colado na esquerda */
+  font-size: 0.72rem; /* Diminuir um pouco garante que a palavra PRÓXIMO caiba */
+  font-weight: 900;
+  white-space: nowrap;
+  overflow: visible; /* Mudamos para visible para tentar mostrar a palavra toda */
+}
+
+/* Data (Direita) - Fixa no canto */
+.card-header .card-date,
+.card-header span:last-child {
+  flex-shrink: 0; /* Não deixa a data encolher */
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e5e7eb;
+  margin-left: auto; /* Força a data para o extremo oposto */
+}
+
+.turno-badge {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.b-manha {
+  background: #3b82f6;
+}
+
+.b-noite {
+  background: #4f46e5;
+}
+
+.b-quarta {
+  background: #64748b;
+}
+
+.card-body {
+  padding: 20px;
+  min-height: 180px; /* Ajuste este valor para a altura total que os cards de domingo costumam ter */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  min-height: 45px; /* Garante que a linha tenha sempre o mesmo tamanho */
+}
+
+.label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+
+/* Tabela e Botões */
+.table-wrapper {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  width: 100%;
+}
+
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  display: table;
+}
+
+.tech-table th {
+  text-align: left;
+  padding: 18px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tech-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tech-table td {
+  padding: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s;
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.tech-table tr:hover td {
+  background: rgba(212, 175, 55, 0.05);
+  color: #fff;
+}
+
+.demanda-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 25px 0 35px;
+}
+
+.demanda-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.demanda-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.demanda-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.demanda-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.demanda-arrow {
+  transition: transform 0.3s ease;
+}
+
+.demanda-card.open .demanda-arrow {
+  transform: rotate(45deg);
+}
+
+.demanda-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 0.35s ease, opacity 0.35s ease, padding 0.35s ease;
+}
+
+/* DESKTOP (hover) */
+@media (hover: hover) {
+  .demanda-card:hover .demanda-body {
+    max-height: 1000px;
+    opacity: 1;
+    padding: 0 24px 24px;
+  }
+}
+
+/* TODOS OS DISPOSITIVOS (controle via JS) */
+.demanda-card.open .demanda-body {
+  max-height: 1000px;
+  opacity: 1;
+  padding: 0 24px 24px;
+}
+
+.demanda-body h3.section-subtitle {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+.btn-action {
+  background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid var(--border);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.main-hero h2 {
+  margin-bottom: 12px;
+}
+
+.hero-text {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #cbd5f5;
+}
+
+.main-hero h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.lista-atividades {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lista-atividades li {
+  line-height: 1.5;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-top: 25px;
+  margin-bottom: 12px;
+}
+
+.hero-text {
+  margin-bottom: 14px;
+  line-height: 1.7;
+  color: #cbd5f5;
+  max-width: 700px;
+}
+
+.lista-atividades {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lista-atividades li {
+  line-height: 1.6;
+}
+
+.role {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--accent);
+  padding: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* --- ADICIONE ESTAS LINHAS --- */
+  min-height: 55px; /* Altura fixa para todas as linhas de operadores */
+  margin-bottom: 8px; /* Espaçamento entre as linhas */
+}
+
+.role:hover {
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateX(5px);
+}
+
+.role-label {
+  color: var(--accent); /* Cor de destaque no label */
+  font-size: 0.8rem;
+}
+
+.role-name {
+  font-size: 1rem;   /* padrão comum */
+  font-weight: 800;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card {
+  background: rgba(25, 25, 30, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.item {
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  line-height: 1.5;
+}
+
+.card {
+  background: rgba(20, 20, 25, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 22px;
+  backdrop-filter: blur(10px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 30px;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #e2e8f0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 15px;
+}
+
+.item {
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.2s ease;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.item strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.muted {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.escala-resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.resumo-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.resumo-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.resumo-card strong {
+  display: block;
+  font-size: 1.4rem;
+  margin-top: 6px;
+}
+
+.resumo-sub {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* --- ADICIONAR AO FINAL DO SEU ARQUIVO CSS PARA RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+  /* Navbar */
+  .nav-content {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Header */
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+ .page-header h1 {
+  letter-spacing: -0.5px;
+}
+
+  /* Grids */
+  .social-grid,
+  .tech-grid,
+  .demanda-grid,
+  .grid,
+  .escala-resumo {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* Containers e Cards */
+  .container {
+    margin: 20px auto;
+  }
+
+  .glass-card {
+    padding: 24px;
+  }
+
+  .demanda-header {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  /* Tabelas (Scroll lateral se necessário) */
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .tech-table th,
+  .tech-table td {
+    padding: 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Ajustes de Heros e Textos */
+  .hero-text {
+    font-size: 0.95rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  /* Glow effects menores para não pesar no celular */
+  .bg-glow,
+  .bg-glow-2 {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links li {
+    font-size: 0.75rem;
+  }
+
+  .social-card {
+    height: 160px;
+  }
+
+  .resumo-card strong {
+    font-size: 1.1rem;
+  }
+}
+
+/* ================= MOBILE TABELA (CORRIGIDO) ================= */
+@media (max-width: 768px) {
+
+  .table-wrapper {
+    overflow: hidden !important;
+  }
+
+  .tech-table,
+  .tech-table tbody,
+  .tech-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .tech-table thead {
+    display: none;
+  }
+
+  .tech-table tr {
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    padding: 12px;
+  }
+
+  /* 🔥 AQUI ESTÁ O CONTROLE CERTO */
+  .tech-table td {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .tech-table td:last-child {
+    border-bottom: none;
+  }
+
+  /* LABEL */
+  .tech-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  /* 🔥 DATA + CULTO LADO A LADO */
+  .tech-table td:nth-child(1),
+  .tech-table td:nth-child(2) {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+  }
+
+  .tech-table td:nth-child(2) {
+    text-align: right;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  /* remove o label só de DATA e CULTO */
+  .tech-table td:nth-child(1)::before,
+  .tech-table td:nth-child(2)::before {
+    display: none;
+  }
+
+  /* deixa mais compacto */
+  .tech-table td:nth-child(1),
+  .tech-table td:nth-child(2) {
+    padding-top: 0;
+  }
+
+}
+
+/* --- APARÊNCIA NO SITE (VERSÃO WEB/PC) --- */
+/* ================= MOBILE TABELA CORRIGIDO ================= */
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow: hidden !important;
+  }
+
+  .tech-table, .tech-table tbody, .tech-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .tech-table thead {
+    display: none;
+  }
+
+  .tech-table tr {
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    padding: 15px; /* Aumentei o respiro interno */
+  }
+
+  .tech-table td {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* Ajuste para Data e Culto ficarem um abaixo do outro e alinhados à esquerda */
+  .tech-table td:nth-child(1),
+  .tech-table td:nth-child(2) {
+    display: block; /* Mudado de inline-block para block */
+    width: 100%;
+    text-align: left !important; /* Força alinhamento à esquerda */
+    border-bottom: none;
+    padding-bottom: 2px;
+  }
+
+  .tech-table td:nth-child(2) {
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Linha divisória após o cabeçalho do card */
+  }
+}
+
+/* --- LAYOUT PC PARA O PRINT (TABELA HORIZONTAL) --- */
+.print-table-layout .tech-table {
+    display: table !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.print-table-layout .tech-table th,
+.print-table-layout .tech-table td {
+    display: table-cell !important;
+    padding: 15px !important;
+    text-align: center !important;
+}
+
+/* --- LAYOUT MOBILE PARA O PRINT (CARDS EM GRADE) --- */
+.print-card-layout .tech-table {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+    justify-content: flex-start !important;
+    padding: 20px !important;
+    border: none !important;
+}
+
+.print-card-layout .tech-table thead {
+    display: none !important;
+}
+
+.print-card-layout .tech-table tbody {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+    justify-content: flex-start !important;
+}
+
+/* CARD */
+.print-card-layout .tech-table tr {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    width: 250px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 15px !important;
+    gap: 6px !important;
+}
+
+/* PADRÃO IGUAL PARA DATA E DIA */
+.print-card-layout .tech-table td[data-label="Data"],
+.print-card-layout .tech-table td[data-label="Culto"] {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    padding: 0 !important;
+}
+
+/* DATA */
+.print-card-layout .tech-table td[data-label="Data"] {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    text-align: left !important;
+}
+
+/* DIA (CULTO) */
+.print-card-layout .tech-table td[data-label="Culto"] {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    text-align: right !important;
+    border-bottom: none !important;
+}
+
+/* FORÇA O STRONG A NÃO QUEBRAR PADRÃO */
+.print-card-layout .tech-table td[data-label="Data"] strong,
+.print-card-layout .tech-table td[data-label="Culto"] strong {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    display: block !important;
+    margin: 0 !important;
+}
+
+/* REMOVE LABELS DE DATA E CULTO */
+.print-card-layout .tech-table td[data-label="Data"]::before,
+.print-card-layout .tech-table td[data-label="Culto"]::before {
+    display: none !important;
+}
+
+/* DEMAIS LINHAS */
+.print-card-layout .tech-table td:not([data-label="Data"]):not([data-label="Culto"]) {
+    grid-column: 1 / -1 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: 0.9rem !important;
+    padding: 4px 0 !important;
+    min-width: 0 !important;
+    gap: 10px !important;
+}
+
+/* CONTROLE DE OVERFLOW DOS NOMES */
+.print-card-layout .tech-table td:not([data-label="Data"]):not([data-label="Culto"]) span,
+.print-card-layout .tech-table td:not([data-label="Data"]):not([data-label="Culto"]) strong {
+    max-width: 60% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+/* LABELS (PROJEÇÃO, SOM, ETC) */
+.print-card-layout .tech-table td::before {
+    content: attr(data-label);
+    color: #888;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+/* AJUSTE GLOBAL PARA PRINT */
+.print-card-layout * {
+    box-sizing: border-box !important;
+}
+
+/* ================= BUSCA DASHBOARD ================= */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+}
+
+.search-box button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .search-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box button {
+    width: 100%;
+  }
+}
+
+/* ================= CORREÇÃO HOVER MOBILE ================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .demanda-card:hover .demanda-body {
+    max-height: 1000px;
+    opacity: 1;
+    padding: 0 24px 24px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .demanda-card:hover .demanda-body {
+    max-height: 0;
+    opacity: 0;
+    padding: 0 24px;
+  }
+}
+
+.demanda-card.open .demanda-body {
+  max-height: 1000px;
+  opacity: 1;
+  padding: 0 24px 24px;
+}
+
+.escala-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.escala-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.escala-card:hover::before {
+  opacity: 1;
+}
+
+.escala-card {
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 10px 30px rgba(0,0,0,0.6);
+}
+
+.page-header {
+  position: relative;
+}
+
+.page-header::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, #d4af37, transparent);
+}
+
+.card-header span:last-child {
+  font-weight: 700 !important;
+  color: #e5e7eb !important;
+  font-size: 0.95rem;
+}
+
+.card-date {
+  font-weight: 600;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.card-header .card-date {
+  color: #e5e7eb !important;
+}
+
+.card-header span:last-child {
+  color: #e5e7eb !important;
+}
+
+.tech-table td:first-child {
+  color: #d1d5db;
+  font-weight: 600;
+}
+
+h1, h2, h3, .logo {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em; /* Letras levemente mais juntas para um look editorial */
+}
+
+.logo b {
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 10px; 
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    /* ESTAS LINHAS FIXAM NO RODAPÉ SEM ALTERAR O LAYOUT DOS CARDS */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Defina uma altura fixa */
+}
+
+/* Fundo escurecido e desfocado */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Caixa do Modal */
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-entrar {
+    flex: 2;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cancelar {
+    flex: 1;
+    background: #eee;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.password-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#senhaInput {
+    padding-right: 40px; /* Dá espaço para o olho não ficar em cima do texto */
+}
+
+#togglePassword:hover {
+    opacity: 1;
+}
+
+/* Container que segura os cards */
+.download-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Estilo do Card Individual */
+.card-download {
+    background: rgba(255, 255, 255, 0.05); /* Leve transparência para combinar com seu tema escuro */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.card-download:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #86840f; /* Cor de destaque que você já usa */
+}
+
+/* Ícone grande ao lado */
+.icon-download {
+    font-size: 2.5rem;
+}
+
+.info-download {
+    flex-grow: 1;
+}
+
+.info-download h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.info-download p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+/* Botão de baixar dentro do card */
+.btn-baixar {
+    background: #86840f;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-baixar:hover {
+    background: #a5a312;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    display: block; /* Mudamos de flex para block para o absolute obedecer melhor os limites */
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px 45px 12px 15px; /* Mantém o espaço na DIREITA para a lupa */
+    box-sizing: border-box;
+    display: block;
+}
+
+.btn-lupa-interna {
+    position: absolute;
+    right: 12px; /* Força a distância da borda DIREITA */
+    left: auto;  /* Garante que não haja alinhamento à esquerda */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer;
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    box-shadow: none !important;
+    z-index: 2; /* Garante que fique por cima do campo de texto */
+}
+
+.btn-lupa-interna svg {
+    stroke: white; /* Garante que o contorno seja branco */
+    opacity: 0.6;
+}
+
+/* Ajuste extra para mobile se a barra for menor */
+@media (max-width: 768px) {
+    .btn-lupa-interna {
+        right: 12px;
+    }
+    .btn-lupa-interna svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Bloqueio total de mudança de cor no preenchimento automático */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    /* Força a cor do texto para branco e impede que o navegador a mude */
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+    
+    /* Cria o fundo escuro interno */
+    box-shadow: 0 0 0px 1000px #121212 inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px #121212 inset !important;
+    
+    /* TRUQUE FINAL: Define uma transição de cor de texto que leva "infinitos" segundos */
+    /* Isso impede que o navegador consiga trocar a cor para preto */
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+
+/* Garante que o estado de foco não quebre o estilo */
+#searchInput:focus {
+    -webkit-text-fill-color: #ffffff !important;
+    box-shadow: 0 0 0px 1000px #121212 inset !important;
+}
+
+/* Remove qualquer destaque de cor de fundo nas linhas da tabela */
+.tech-table tr {
+    background: transparent !important;
+}
+
+/* Mantém apenas o zebra-striping (um sim, um não) se você desejar, 
+   mas com a cor neutra que você já usa */
+.tech-table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Se houver uma classe específica vindo do JS, anule-a */
+.tech-table tr.proximo-culto, 
+.tech-table tr.active {
+    background: transparent !important;
+}
+
+/* Força todos os cultos a ficarem "acesos" */
+.tech-table tr, 
+.tech-table td,
+.escala-card,
+.resumo-card {
+    opacity: 1 !important;
+    filter: none !important; /* Remove filtros de preto e branco/cinza */
+    color: #ffffff !important; /* Garante que o texto fique branco */
+}
+
+/* Se você usa uma classe específica para identificar cultos passados */
+.passado, .inactive, .past-date {
+    opacity: 1 !important;
+    filter: none !important;
+    background: rgba(255, 255, 255, 0.03) !important; /* Mantém o fundo padrão */
+}
+
+/* ================= NAVEGAÇÃO MOBILE (SITE) ================= */
+@media (max-width: 768px) {
+    .tech-table, .tech-table tbody, .tech-table tr {
+        display: block !important;
+        width: 100% !important;
+    }
+    .tech-table thead { display: none !important; }
+
+    .tech-table tr {
+        margin-bottom: 20px !important;
+        padding: 15px !important;
+        background: rgba(255, 255, 255, 0.04) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px;
+    }
+
+    /* Data e Dia na mesma linha no site */
+    .tech-table td:nth-child(1),
+    .tech-table td:nth-child(2) {
+        display: inline-block !important;
+        width: auto !important;
+        padding-bottom: 10px !important;
+    }
+}
+
+/* ============================================================
+   ESTILOS DE EXPORTAÇÃO (IMAGEM SALVA)
+   ============================================================ */
+
+/* 1. CONFIGURAÇÃO GERAL */
+.export-mobile, .export-web {
+    background-color: #050507 !important;
+    padding: 35px !important;
+}
+
+.export-mobile { width: 1450px !important; }
+.export-web { width: 1300px !important; }
+
+/* 2. VERSÃO WEB: FORMATO LISTA (TABELA ORIGINAL) */
+.export-web .tech-table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.export-web .tech-table tr {
+    display: table-row !important; /* Volta a ser uma linha de tabela */
+    background: transparent !important;
+}
+
+.export-web .tech-table td {
+    display: table-cell !important;
+    padding: 15px 10px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    vertical-align: middle !important;
+    text-align: left !important;
+}
+
+/* 3. VERSÃO MOBILE: FORMATO CARDS (GRID) */
+.export-mobile .tech-table tbody {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 25px !important;
+}
+
+.export-mobile .tech-table tr {
+    display: block !important;
+    background: #111112 !important;
+    padding: 22px !important;
+    border-radius: 15px !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+/* 4. DATA E DIA (SEM LINHA E ALINHADOS) */
+.export-mobile .tech-table td:nth-child(1),
+.export-mobile .tech-table td:nth-child(2),
+.export-web .tech-table td:nth-child(1),
+.export-web .tech-table td:nth-child(2) {
+    font-size: 1.35rem !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    text-transform: uppercase !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* 5. OPERADORES MOBILE (LABEL À ESQUERDA) */
+.export-mobile .tech-table td:not(:nth-child(1)):not(:nth-child(2)) {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 0 !important;
+    border-top: 1px solid rgba(255,255,255,0.08) !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+}
+
+/* 6. CORES DAS FUNÇÕES (WEB E MOBILE) */
+/* No Web (Lista), as cores ficam no próprio texto. No Mobile, no ::before */
+.tech-table td:nth-child(3), .export-mobile .tech-table td:nth-child(3)::before { color: #D4AF37 !important; }
+.tech-table td:nth-child(4), .export-mobile .tech-table td:nth-child(4)::before { color: #00fbff !important; }
+.tech-table td:nth-child(5), .export-mobile .tech-table td:nth-child(5)::before { color: #00ff88 !important; }
+
+/* Esconde os labels (Projeção, Som...) na versão Web para não duplicar */
+.export-web .tech-table td::before {
+    display: none !important;
+}

@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministério de Comunicações | Painel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="dark-theme">
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <span class="logo">MINISTÉRIO DE <b>COMUNICAÇÕES</b></span>
+            <ul class="nav-links">
+                <li onclick="mostrarSecao('inicio', this)" class="active">Início</li>
+                <li onclick="mostrarSecao('escala', this)">Escala</li>
+                <li onclick="mostrarSecao('projetos', this)">Projetos</li>
+                <li onclick="mostrarSecao('links', this)">Downloads</li>
+                <li onclick="mostrarSecao('mapa-demandas', this)">Mapa de Demandas</li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <div class="header-text">
+                <h1 id="page-title">Ministério de Comunicações</h1>
+                <p id="page-subtitle" class="subtitle">
+                    Comunicação, organização e excelência no serviço.
+                </p>
+            </div>
+            <div class="header-actions">
+                <button id="btn-ver-mensal" class="btn-action" onclick="mostrarSecao('mensal')" style="display:none;">
+                    Ver Mês Completo →
+                </button>
+                <button id="btn-voltar-escala" class="btn-secondary" onclick="mostrarSecao('escala')" style="display:none;">
+                    ← Voltar para a Semana
+                </button>
+            </div>
+        </header>
+
+        <section id="links" class="secao" style="display: none;">
+    <div class="download-container">
+        <div class="card-download">
+            <div class="icon-download">📄</div>
+            <div class="info-download">
+                <h4>Identidade Visual</h4>
+                <p>Logos e manuais do ministério.</p>
+            </div>
+            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+        </div>
+
+        <div class="card-download">
+            <div class="icon-download">🎥</div>
+            <div class="info-download">
+                <h4>Vinhetas 2024</h4>
+                <p>Vídeos de abertura para os cultos.</p>
+            </div>
+            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+        </div>
+
+        <div class="card-download">
+            <div class="icon-download">🎵</div>
+            <div class="info-download">
+                <h4>Playbacks</h4>
+                <p>Arquivos de áudio para ensaios.</p>
+            </div>
+            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+        </div>
+    </div>
+</section>
+
+<section id="inicio" class="secao">
+    <div class="glass-card main-hero">
+        <h2 class="section-title">Nossa Missão</h2>
+        <p class="hero-text">
+            O Ministério de Comunicações tem como missão propagar a Palavra de Deus e as ações da igreja por meio de mensagens, fotos e vídeos em nossas redes sociais. Também buscamos fortalecer a identidade visual da igreja e apoiar outros ministérios em suas necessidades de comunicação.
+        </p>
+        <h3 class="section-subtitle">Nossas Atividades</h3>
+        <ul class="lista-atividades">
+            <li>Produção de material audiovisual para as redes sociais</li>
+            <li>Atualização e manutenção do site da igreja</li>
+            <li>Apoio na criação de conteúdo para eventos e apresentações</li>
+            <li>Operação e gerenciamento dos equipamentos de mídia nas transmissões</li>
+        </ul>
+    </div> <div class="social-grid"> 
+        <a href="https://invbotafogo.com.br/" target="_blank" class="social-card">
+            <div class="social-content">
+                <svg viewBox="0 0 24 24" class="icon">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span class="social-label">Site</span>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/@igrejadenovavidabotafogo3785" target="_blank" class="social-card">
+            <div class="social-content">
+                <svg viewBox="0 0 24 24" class="icon">
+                    <rect x="2" y="6" width="20" height="12" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <polygon points="10,9 15,12 10,15" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span class="social-label">YouTube</span>
+            </div>
+        </a>
+
+        <a href="https://www.instagram.com/igrejanvb/" target="_blank" class="social-card">
+            <div class="social-content">
+                <svg viewBox="0 0 24 24" class="icon">
+                    <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+                </svg>
+                <span class="social-label">Instagram</span>
+            </div>
+        </a>
+    </div> </section>                         
+
+
+        <section id="escala" class="secao" style="display:none;">
+            <div class="escala-resumo">
+                <div class="resumo-card">
+                    <span class="resumo-label">Próximo culto</span>
+                    <strong id="resumo-culto">--</strong>
+                    <span id="resumo-data" class="resumo-sub">--</span>
+                </div>
+                <div class="resumo-card">
+                    <span class="resumo-label">Eventos na semana</span>
+                    <strong id="resumo-total">0</strong>
+                </div>
+            </div>
+
+<div style="margin-bottom:20px;">
+    <div class="search-box" style="position: relative !important; width: 100% !important; display: block !important;">
+        <input type="text" id="searchInput" placeholder="Pesquise pelo primeiro nome (ex: ALAN, JEAN...)" 
+               onkeyup="filtrarMembros()" 
+               style="width: 100% !important; padding: 12px 45px 12px 15px !important; box-sizing: border-box !important; display: block !important; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 8px;">
+        
+        <button onclick="buscarPessoa()" class="btn-lupa-interna" 
+                style="position: absolute !important; right: 12px !important; top: 50% !important; transform: translateY(-50%) !important; background: none !important; border: none !important; padding: 0 !important; margin: 0 !important; cursor: pointer !important; line-height: 0 !important; display: flex !important; align-items: center !important; left: auto !important; width: auto !important; height: auto !important;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.6;">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
+</div>
+            </div>
+            <div id="escala-semanal-container" class="tech-grid"></div>
+        </section>
+
+<section id="mensal" class="secao" style="display:none;">
+    <div style="margin-bottom: 20px; text-align: right;">
+        <button onclick="salvarEscalaComoImagem()" class="btn-action">📸 Salvar como Imagem</button>
+    </div>
+
+    <div class="table-wrapper" id="capture-area">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Culto</th>
+                    <th>Projeção</th>
+                    <th>Mesa de Som</th>
+                    <th>Transmissão</th>
+                </tr>
+            </thead>
+            <tbody id="corpo-tabela-mensal"></tbody>
+        </table>
+    </div>
+</section>
+
+        <section id="mapa-demandas" class="secao" style="display:none;">
+            <div class="demanda-grid">
+                <div class="demanda-card">
+                    <button type="button" class="demanda-header">
+                        <span>Durante os Cultos</span>
+                        <span class="demanda-arrow">+</span>
+                    </button>
+                    <div class="demanda-body">
+                        <ul class="lista-atividades">
+                            <li>Exibição ao vivo do culto</li>
+                            <li>Posicionamento das câmeras</li>
+                            <li>Acompanhamento de áudio durante todo o culto (Garantia da qualidade de som)</li>
+                            <li>Acompanhamento de imagem durante todo o culto (Garantia da qualidade do vídeo)</li>
+                            <li>Controle de imagem sendo exibida (letra de hinos, bíblia, ofertório, câmeras 1 e 2)</li>
+                            <li>Iniciar e finalizar a gravação da pregação</li>
+                            <li>Fotos de momentos do culto (aniversários, orações por momentos especiais, mulheres, varões, apresentação de crianças etc.)</li>
+                            <li>Exibição do conteúdo do datashow (compartilhado com ministério de louvor, responsabilidade de quem está no computador junto a mesa de som)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="demanda-card">
+                    <button type="button" class="demanda-header">
+                        <span>Fora dos Cultos</span>
+                        <span class="demanda-arrow">+</span>
+                    </button>
+                    <div class="demanda-body">
+                        <ul class="lista-atividades">
+                            <li>Mídias</li>
+                            <li>Publicação de gravação das pregações</li>
+                            <li>Criação de conteúdo de mídia (shorts do YouTube, postagens no Instagram)</li>
+                            <li>Mensagens no Instagram (Versículos, Reflexão, etc.)</li>
+                            <li>Manutenção do site da igreja (novos conteúdos)</li>
+                        </ul>
+                        <h3 class="section-subtitle">Auxílio na criação de diversos materiais</h3>
+                        <ul class="lista-atividades">
+                            <li>Criação de conteúdo para o datashow (menu da cantina, anúncios de cultos ou eventos)</li>
+                            <li>Auxílio na formatação de material de estudos</li>
+                            <li>Confecção de material evangelístico</li>
+                            <li>Criação e confecção de material para eventos (Páscoa, Dia das Mães, Pais etc.)</li>
+                            <li>Gravação do curso OBREIRO APROVADO para disponibilizar no site</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="demanda-card">
+                    <button type="button" class="demanda-header">
+                        <span>Funções</span>
+                        <span class="demanda-arrow">+</span>
+                    </button>
+                    <div class="demanda-body">
+                        <h3 class="section-subtitle">Operador de Transmissão</h3>
+                        <ul class="lista-atividades">
+                            <li>Responsável pelo ao vivo</li>
+                            <li>Controle de câmeras e gravação</li>
+                            <li>Acompanha qualidade do som na transmissão</li>
+                        </ul>
+                        <h3 class="section-subtitle">Operador de Projeção</h3>
+                        <ul class="lista-atividades">
+                            <li>Datashow (louvor + avisos)</li>
+                            <li>Fotografia</li>
+                            <li>Registro dos cultos e eventos para criação de posterior de conteúdo</li>
+                        </ul>
+                        <h3 class="section-subtitle">Social Media</h3>
+                        <ul class="lista-atividades">
+                            <li>Postagens</li>
+                            <li>Respostas</li>
+                            <li>Planejamento de conteúdo</li>
+                        </ul>
+                        <h3 class="section-subtitle">Design / Criação</h3>
+                        <ul class="lista-atividades">
+                            <li>Artes</li>
+                            <li>Manutenção da Identidade visual</li>
+                            <li>Materiais gráficos</li>
+                        </ul>
+                        <h3 class="section-subtitle">Desenvolvedor</h3>
+                        <ul class="lista-atividades">
+                            <li>Atualização e manutenção do site da igreja</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/script.js"></script>
+
+<footer class="footer">
+  <p>© 2026 Ministério de Comunicações. Todos os direitos reservados.</p>
+</footer>
+
+<div id="modalLogin" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <h3>Acesso Restrito</h3>
+        <p>Identifique-se para acessar os downloads</p>
+        
+<div class="input-group">
+    <input type="text" id="usuarioInput" placeholder="Usuário">
+    
+    <div class="password-wrapper" style="position: relative;">
+        <input type="password" id="senhaInput" placeholder="Senha" onkeydown="if(event.key==='Enter') validarAcesso()">
+        <span id="togglePassword" onclick="toggleSenha()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; opacity: 0.6;">
+            👁️
+        </span>
+    </div>
+</div>
+        
+        <div class="modal-buttons">
+            <button type="button" onclick="fecharLogin()" class="btn-cancelar">Cancelar</button>
+            <button onclick="validarAcesso()" class="btn-entrar">Entrar</button>
+        </div>
+        <p id="erroLogin" style="color: #ff4d4d; display: none; margin-top: 10px;">Dados incorretos!</p>
+    </div>
+</div>
+
+</body>
+
+</html>

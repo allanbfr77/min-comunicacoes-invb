@@ -1,0 +1,25 @@
+{
+  "escala": [
+    { "data": "2026-04-01", "culto": "QUARTA-FEIRA", "turno": "quarta", "projecao": "JEAN", "mesaSom": "BIANCA", "transmissao": "ALAN" },
+
+    { "data": "2026-04-05", "culto": "DOMINGO/MANHÃ", "turno": "manha", "projecao": "BIANCA", "mesaSom": "JEAN", "transmissao": "ALAN" },
+    { "data": "2026-04-05", "culto": "DOMINGO/NOITE", "turno": "noite", "projecao": "ALAN", "mesaSom": "BIANCA", "transmissao": "JEAN" },
+
+    { "data": "2026-04-08", "culto": "QUARTA-FEIRA", "turno": "quarta", "projecao": "ALAN", "mesaSom": "ALAN", "transmissao": "JEAN" },
+
+    { "data": "2026-04-12", "culto": "DOMINGO/MANHÃ", "turno": "manha", "projecao": "JEAN", "mesaSom": "ALAN", "transmissao": "JOÃO" },
+    { "data": "2026-04-12", "culto": "DOMINGO/NOITE", "turno": "noite", "projecao": "BIANCA", "mesaSom": "BIANCA", "transmissao": "JEAN" },
+
+    { "data": "2026-04-15", "culto": "QUARTA-FEIRA", "turno": "quarta", "projecao": "BIANCA", "mesaSom": "ALAN", "transmissao": "JEAN" },
+
+    { "data": "2026-04-19", "culto": "DOMINGO/MANHÃ", "turno": "manha", "projecao": "ALAN", "mesaSom": "BIANCA", "transmissao": "JEAN" },
+    { "data": "2026-04-19", "culto": "DOMINGO/NOITE", "turno": "noite", "projecao": "JEAN", "mesaSom": "JEAN", "transmissao": "BIANCA" },
+
+    { "data": "2026-04-22", "culto": "QUARTA-FEIRA", "turno": "quarta", "projecao": "JEAN", "mesaSom": "MEDEIROS", "transmissao": "ALAN" },
+
+    { "data": "2026-04-26", "culto": "DOMINGO/MANHÃ", "turno": "manha", "projecao": "ALAN", "mesaSom": "JEAN", "transmissao": "BIANCA" },
+    { "data": "2026-04-26", "culto": "DOMINGO/NOITE", "turno": "noite", "projecao": "BIANCA", "mesaSom": "JEAN", "transmissao": "JOÃO" },
+
+    { "data": "2026-04-29", "culto": "QUARTA-FEIRA", "turno": "quarta", "projecao": "JEAN", "mesaSom": "ALAN", "transmissao": "BIANCA" }
+  ]
+}
