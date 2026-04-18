@@ -1887,3 +1887,13 @@ input:-webkit-autofill:active {
         filter: none;
     }
 }
+
+/* --- FORÇAR COR DOURADA NO SUBTÍTULO MOBILE --- */
+@media (max-width: 768px) {
+    /* Selecionando o subtítulo especificamente na home mobile */
+    .hero-home .slogan,
+    .secao-home .subtitle {
+        color: #d4af37 !important; /* Força a cor dourada */
+        opacity: 1 !important;    /* Garante que não esteja transparente */
+    }
+}
