@@ -1108,8 +1108,8 @@ body::after {
 }
 
 .escala-card {
-  position: relative;
-  overflow: hidden;
+  position: relative; /* essencial para o ::before funcionar corretamente */
+  border-radius: 20px;
 }
 
 .escala-card::before {
@@ -1118,16 +1118,26 @@ body::after {
   inset: 0;
   border-radius: 20px;
   padding: 1px;
+
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255,255,255,0.25),
+    rgba(255, 255, 255, 0.25),
     transparent
   );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
+
+  mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
   opacity: 0;
-  transition: 0.4s;
+  transition: opacity 0.4s ease;
 }
 
 .escala-card:hover::before {
@@ -1229,13 +1239,27 @@ h1, h2, h3, .logo {
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
+/* ================= JANELA DE LOGIN (AJUSTADA) ================= */
+
 .input-group input {
     width: 100%;
     padding: 12px;
     margin: 8px 0;
-    border: 1px solid #ddd;
+    /* Fundo escuro padrão com borda sutil do seu tema */
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
     box-sizing: border-box;
+    color: white; /* Garante que o texto digitado seja branco */
+}
+
+.modal-content {
+    /* Aplicando o fundo escuro e o efeito de vidro do seu site */
+    background: #0a0a0c !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    padding: 30px;
 }
 
 .modal-buttons {
@@ -1246,24 +1270,35 @@ h1, h2, h3, .logo {
 
 .btn-entrar {
     flex: 2;
-    background: #007bff;
+    background: #86840f; /* O amarelo/dourado que você usa nos botões */
     color: white;
     border: none;
     padding: 12px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-entrar:hover {
+    background: #a5a312; /* Tom mais claro para o hover */
 }
 
 .btn-cancelar {
     flex: 1;
-    background: #eee;
-    border: none;
+    background: rgba(255, 255, 255, 0.1); /* Fundo neutro e discreto */
+    color: #bbb;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px;
     border-radius: 6px;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
+.btn-cancelar:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
 .password-wrapper {
     width: 100%;
     display: flex;
@@ -1552,4 +1587,303 @@ input:-webkit-autofill:active {
 /* Esconde os labels (Projeção, Som...) na versão Web para não duplicar */
 .export-web .tech-table td::before {
     display: none !important;
+}
+
+/* ============================================================
+   AJUSTES EXCLUSIVOS PARA MOBILE (Telas até 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+    
+    /* 1. Efeito "Tela Cheia" na Apresentação (Foto 1) */
+    .sua-secao-principal { /* Ajuste para o nome da sua classe (ex: .hero ou .main) */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh; /* Ocupa a altura toda do celular */
+        padding: 20px;
+    }
+
+    /* 2. Esconde o menu de texto horizontal (Foto 2) */
+    header nav, .navbar-links, .menu-horizontal, .nav-links { 
+        display: none !important; 
+    }
+
+    /* 3. Botão Hambúrguer e Animação para X */
+    .menu-hamburger-mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        position: fixed;
+        top: 25px;
+        right: 20px;
+        z-index: 10000; /* Acima do overlay */
+        cursor: pointer;
+    }
+
+    .menu-hamburger-mobile span {
+        height: 3px;
+        width: 100%;
+        background-color: #f1c40f; /* Amarelo do seu tema */
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        transform-origin: left center;
+    }
+
+    /* Transformação em X quando ativo */
+    .menu-hamburger-mobile.active span:nth-child(1) {
+        transform: rotate(45deg);
+        top: -2px;
+        left: 5px;
+    }
+
+    .menu-hamburger-mobile.active span:nth-child(2) {
+        width: 0%;
+        opacity: 0;
+    }
+
+    .menu-hamburger-mobile.active span:nth-child(3) {
+        transform: rotate(-45deg);
+        top: 2px;
+        left: 5px;
+    }
+
+    /* 4. Tela de Menu (Overlay) */
+    .menu-overlay-mobile {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.98); 
+        z-index: 9999;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu-overlay-mobile.active {
+        display: flex;
+    }
+
+    .nav-links-mobile {
+        list-style: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    .nav-links-mobile li {
+        margin: 25px 0;
+    }
+
+    .nav-links-mobile a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+    }
+}
+
+/* Garante que elementos mobile não apareçam no Desktop */
+@media (min-width: 769px) {
+    .menu-hamburger-mobile, .menu-overlay-mobile {
+        display: none !important;
+    }
+}
+
+/* Estilo específico para a Home no Mobile */
+@media (max-width: 768px) {
+    .secao-home {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px; /* Espaço após o menu */
+    }
+
+    .home-hero-wrapper {
+        text-align: center;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    .home-title {
+        font-size: 2.2rem; /* Tamanho do título grande */
+        line-height: 1.2;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .home-hero-wrapper .subtitle {
+        font-size: 1rem;
+        opacity: 0.9;
+        max-width: 280px; /* Evita que o texto espalhe muito */
+        margin: 0 auto;
+    }
+
+    .linha-decorativa {
+        width: 60px;
+        height: 3px;
+        background: #ffcc00;
+        margin: 20px auto 0;
+        border-radius: 2px;
+    }
+
+    /* Ajuste do card de Missão */
+    .glass-card.main-hero {
+        margin-top: 10px;
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+/* 1. Garante que a seção ocupe o espaço disponível e empurre o conteúdo */
+.secao#inicio {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 160px); /* Ajusta conforme o tamanho do seu header/footer */
+    padding-bottom: 10px; /* Pequeno respiro antes do rodapé */
+}
+
+/* 2. O "mecanismo" que empurra os ícones para baixo */
+.social-grid {
+    margin-top: auto; /* Isso joga a grid para o final da seção */
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0; /* Espaço interno para não encostar na linha do rodapé */
+}
+
+/* 3. Garante que o card de missão não estique mais do que o necessário */
+.main-hero {
+    margin-bottom: 40px;
+}
+
+/* HERO só aparece no mobile */
+.hero-home {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body.home-active .hero-home {
+    display: flex;
+  }
+
+  body.home-active #main-page-header {
+    display: none;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  .hero-home {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .hero-home h1,
+  .hero-home .slogan {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+  }
+
+  .linha-decorativa {
+  display: none;
+}
+
+  .main-hero {
+    margin-top: 40px;
+  }
+
+}
+
+.hero-home h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.hero-home .slogan {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Estado inicial: Invisível e deslocado para baixo */
+.hidden-element {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(30px);
+    transition: all 0.8s ease-out; /* Controla a suavidade */
+}
+
+/* Estado final: Visível e na posição correta */
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* Container das Boas-Vindas */
+.welcome-section {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Classe que aplicaremos via JS quando o usuário rolar */
+.fade-out-up {
+    opacity: 0;
+    transform: translateY(-50px); /* Faz as boas-vindas subirem e sumirem */
+    pointer-events: none;
+}
+
+/* Ajuste no estado inicial do Card (Entrada) */
+.hidden-element {
+    opacity: 0;
+    transform: translateY(100vh); /* Começa lá no final da tela (efeito de nova página) */
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estado padrão (Web/Desktop) */
+.hidden-element {
+    opacity: 1; /* Começa visível no PC */
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+
+/* Estado apenas para Mobile (telas menores que 768px) */
+@media (max-width: 768px) {
+    .hidden-element {
+        opacity: 0;
+        transform: translateY(50vh); /* Só fica 'escondido' no celular */
+    }
+    
+    .hidden-element.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 769px) {
+    .hidden-element {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
 }

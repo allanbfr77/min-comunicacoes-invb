@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -10,7 +10,21 @@
 </head>
 
 <body class="dark-theme">
+    <div class="menu-hamburger-mobile" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
+<nav class="menu-overlay-mobile" id="menuOverlay">
+    <ul class="nav-links-mobile">
+ <li><a href="#" onclick="mostrarSecao('inicio'); fecharMenuDepois();">Início</a></li>
+<li><a href="#" onclick="mostrarSecao('escala'); fecharMenuDepois();">Escala</a></li>
+<li><a href="#" onclick="mostrarSecao('projetos'); fecharMenuDepois();">Projetos</a></li>
+<li><a href="#" onclick="mostrarSecao('links'); fecharMenuDepois();">Downloads</a></li>
+<li><a href="#" onclick="mostrarSecao('mapa-demandas'); fecharMenuDepois();">Mapa de Demandas</a></li>
+    </ul>
+</nav>
     <nav class="navbar">
         <div class="nav-content">
             <span class="logo">MINISTÉRIO DE <b>COMUNICAÇÕES</b></span>
@@ -25,13 +39,13 @@
     </nav>
 
     <main class="container">
-        <header class="page-header">
-            <div class="header-text">
-                <h1 id="page-title">Ministério de Comunicações</h1>
-                <p id="page-subtitle" class="subtitle">
-                    Comunicação, organização e excelência no serviço.
-                </p>
-            </div>
+<header class="page-header" id="main-page-header">
+<div class="header-text">
+<h1 id="page-title">Ministério de Comunicações</h1>
+<p id="page-subtitle" class="subtitle">
+            Comunicação, organização e excelência no serviço.
+         </p>
+     </div>
             <div class="header-actions">
                 <button id="btn-ver-mensal" class="btn-action" onclick="mostrarSecao('mensal')" style="display:none;">
                     Ver Mês Completo →
@@ -42,50 +56,26 @@
             </div>
         </header>
 
-        <section id="links" class="secao" style="display: none;">
-    <div class="download-container">
-        <div class="card-download">
-            <div class="icon-download">📄</div>
-            <div class="info-download">
-                <h4>Identidade Visual</h4>
-                <p>Logos e manuais do ministério.</p>
-            </div>
-            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
-        </div>
-
-        <div class="card-download">
-            <div class="icon-download">🎥</div>
-            <div class="info-download">
-                <h4>Vinhetas 2024</h4>
-                <p>Vídeos de abertura para os cultos.</p>
-            </div>
-            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
-        </div>
-
-        <div class="card-download">
-            <div class="icon-download">🎵</div>
-            <div class="info-download">
-                <h4>Playbacks</h4>
-                <p>Arquivos de áudio para ensaios.</p>
-            </div>
-            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
-        </div>
-    </div>
-</section>
-
 <section id="inicio" class="secao">
-    <div class="glass-card main-hero">
-        <h2 class="section-title">Nossa Missão</h2>
-        <p class="hero-text">
-            O Ministério de Comunicações tem como missão propagar a Palavra de Deus e as ações da igreja por meio de mensagens, fotos e vídeos em nossas redes sociais. Também buscamos fortalecer a identidade visual da igreja e apoiar outros ministérios em suas necessidades de comunicação.
-        </p>
-        <h3 class="section-subtitle">Nossas Atividades</h3>
-        <ul class="lista-atividades">
-            <li>Produção de material audiovisual para as redes sociais</li>
-            <li>Atualização e manutenção do site da igreja</li>
-            <li>Apoio na criação de conteúdo para eventos e apresentações</li>
-            <li>Operação e gerenciamento dos equipamentos de mídia nas transmissões</li>
-        </ul>
+<div class="home-principal">
+<div class="hero-home" id="welcome-text">
+<h1>Ministério de Comunicações</h1>
+<p class="slogan">Comunicação, organização e excelência no serviço.</p>
+<div class="linha-decorativa"></div>
+</div>
+<div class="glass-card main-hero hidden-element">
+    <h2 class="section-title">Nossa Missão</h2>
+    <p class="hero-text">
+        O Ministério de Comunicações tem como missão propagar a Palavra de Deus e as ações da igreja por meio de mensagens, fotos e vídeos em nossas redes sociais. Também buscamos fortalecer a identidade visual da igreja e apoiar outros ministérios em suas necessidades de comunicação.
+    </p>
+    <h3 class="section-subtitle">Nossas Atividades</h3>
+    <ul class="lista-atividades">
+        <li>Produção de material audiovisual para as redes sociais</li>
+        <li>Atualização e manutenção do site da igreja</li>
+        <li>Apoio na criação de conteúdo para eventos e apresentações</li>
+        <li>Operação e gerenciamento dos equipamentos de mídia nas transmissões</li>
+    </ul>
+</div>
     </div> <div class="social-grid"> 
         <a href="https://invbotafogo.com.br/" target="_blank" class="social-card">
             <div class="social-content">
@@ -117,8 +107,9 @@
                 <span class="social-label">Instagram</span>
             </div>
         </a>
-    </div> </section>                         
-
+</div> <!-- main-hero -->
+  </div> <!-- home-principal -->
+</section>
 
         <section id="escala" class="secao" style="display:none;">
             <div class="escala-resumo">
@@ -147,7 +138,6 @@
             </svg>
         </button>
     </div>
-</div>
             </div>
             <div id="escala-semanal-container" class="tech-grid"></div>
         </section>
@@ -257,6 +247,36 @@
             </div>
         </section>
     </main>
+    <section id="links" class="secao" style="display: none;">
+    <div class="download-container">
+        <div class="card-download">
+            <div class="icon-download">📄</div>
+            <div class="info-download">
+                <h4>Identidade Visual</h4>
+                <p>Logos e manuais do ministério.</p>
+            </div>
+            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+        </div>
+
+        <div class="card-download">
+            <div class="icon-download">🎥</div>
+            <div class="info-download">
+                <h4>Vinhetas 2024</h4>
+                <p>Vídeos de abertura para os cultos.</p>
+            </div>
+            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+        </div>
+
+        <div class="card-download">
+            <div class="icon-download">🎵</div>
+            <div class="info-download">
+                <h4>Playbacks</h4>
+                <p>Arquivos de áudio para ensaios.</p>
+            </div>
+            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+        </div>
+    </div>
+</section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="js/script.js"></script>
 
@@ -288,6 +308,24 @@
     </div>
 </div>
 
+<script>
+    
+function toggleMenu() {
+    const menu = document.getElementById('menuOverlay');
+    const icon = document.querySelector('.menu-hamburger-mobile');
+    
+    // Liga/Desliga as classes 'active'
+    menu.classList.toggle('active');
+    icon.classList.toggle('active');
+    
+    // Trava o scroll da página ao abrir o menu
+    if (menu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+    </script>
 </body>
 
 </html>
