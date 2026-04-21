@@ -4,11 +4,6 @@
   --glass: rgba(255, 255, 255, 0.03);
 }
 
-body {
-  background-color: var(--bg-dark);
-  /* Remova ou suavize o radial-gradient branco que está nas bordas */
-}
-
 .glass-card, .escala-card, .resumo-card, .tech-table {
   background: rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(12px); /* Isso cria o efeito de vidro fosco */
@@ -34,68 +29,6 @@ body {
   overflow-x: hidden;
   position: relative; /* Adicione apenas esta linha */
   padding-bottom: 60px; /* Adicione isso (ajuste conforme a altura do seu rodapé) */
-}
-
-/* Fundo Dinâmico */
-body::before {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(212, 175, 55, 0.08) 0%,
-    transparent 70%
-  );
-  filter: blur(80px); /* Suaviza as bordas do gradiente */
-}
-
-@keyframes fadeInSlide {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.secao {
-  animation: fadeInSlide 0.6s ease-out forwards;
-}
-
-/* segunda camada pra dar profundidade */
-body::after {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  z-index: -1;
-
-  background: radial-gradient(
-    circle,
-    rgba(255,215,0,0.04) 0%,
-    transparent 60%
-  );
-
-  animation: goldMoveReverse 35s linear infinite;
-}
-
-@keyframes goldMove {
-  from {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  to {
-    transform: translate(10%, 10%) rotate(360deg);
-  }
-}
-
-@keyframes goldMoveReverse {
-  from {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  to {
-    transform: translate(-10%, -10%) rotate(-360deg);
-  }
 }
 
 /* Navbar */
@@ -180,9 +113,6 @@ body::after {
 
 /* Glass Card Missão */
 .glass-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 18px;
   padding: 35px;
   margin-bottom: 40px;
 }
@@ -192,25 +122,6 @@ body::after {
   margin-top: 15px;
   color: var(--text-secondary);
   line-height: 1.8;
-}
-
-/* Grid Redes Sociais - FOTOS INTEIRAS E ALTO CONTRASTE */
-
-/* Alinha os cards um ao lado do outro */
-.social-grid {
-  display: flex;
-  justify-content: center; /* Centraliza o grupo na página */
-  align-items: center;
-  gap: 40px;               /* Espaço entre um ícone e outro */
-  flex-wrap: wrap; 
-  margin-top: 30px;
-  padding: 20px;
-}
-
-.social-label {
-  font-size: 0.75rem;
-  color: #fff;
-  opacity: 0.8;
 }
 
 /* Remove o sublinhado azul e prepara o card */
@@ -244,11 +155,6 @@ body::after {
   opacity: 0.8;
 }
 
-.icon {
-  width: 28px;
-  height: 28px;
-  color: #fff;
-}
 
 
 /* Escala Cards Semanal */
@@ -257,23 +163,6 @@ body::after {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
   align-items: stretch; /* Adicione esta linha */
-}
-
-.escala-card {
-  background: var(--card-bg);
-  border-radius: 20px;
-  border: none; 
-  transition: 0.4s;
-  z-index: 1;
-  display: flex;       /* Adicione isso */
-  flex-direction: column; /* Adicione isso */
-  height: 100%;        /* Adicione isso */
-}
-
-.escala-card:hover {
-  transform: translateY(-12px);
-  z-index: 100;
-  border-color: #fff;
 }
 
 .card-header {
@@ -583,39 +472,6 @@ body::after {
   font-weight: 800;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  margin-top: 25px;
-}
-
-.card-body {
-  padding: 10px;
-}
-
-.card {
-  background: rgba(25, 25, 30, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 24px;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 15px;
-}
-
-.item {
-  padding: 14px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  line-height: 1.5;
-}
-
 .card {
   background: rgba(20, 20, 25, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -728,16 +584,6 @@ body::after {
   letter-spacing: -0.5px;
 }
 
-  /* Grids */
-  .social-grid,
-  .tech-grid,
-  .demanda-grid,
-  .grid,
-  .escala-resumo {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
   /* Containers e Cards */
   .container {
     margin: 20px auto;
@@ -793,69 +639,6 @@ body::after {
   .resumo-card strong {
     font-size: 1.1rem;
   }
-}
-
-/* ================= MOBILE TABELA (CORRIGIDO) ================= */
-@media (max-width: 768px) {
-
-  .table-wrapper {
-    overflow: hidden !important;
-  }
-
-  .tech-table,
-  .tech-table tbody,
-  .tech-table tr {
-    display: block;
-    width: 100%;
-  }
-
-  .tech-table thead {
-    display: none;
-  }
-
-  .tech-table tr {
-    margin-bottom: 20px;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 12px;
-    background: rgba(255,255,255,0.03);
-    padding: 12px;
-  }
-
-  /* 🔥 AQUI ESTÁ O CONTROLE CERTO */
-  .tech-table td {
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .tech-table td:last-child {
-    border-bottom: none;
-  }
-
-  /* LABEL */
-  .tech-table td::before {
-    content: attr(data-label);
-    display: block;
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    font-weight: 700;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-  }
-
-  /* 🔥 DATA + CULTO LADO A LADO */
-  .tech-table td:nth-child(1),
-  .tech-table td:nth-child(2) {
-    display: inline-block;
-    width: 49%;
-    vertical-align: top;
-  }
-
-  .tech-table td:nth-child(2) {
-    text-align: right;
-  }
-
 }
 
 @media (max-width: 768px) {
@@ -919,6 +702,16 @@ body::after {
     margin-bottom: 10px;
     border-bottom: 1px solid rgba(255,255,255,0.1); /* Linha divisória após o cabeçalho do card */
   }
+}
+
+.tech-table td::before {
+  content: attr(data-label);
+  display: block;
+  font-size: 0.7rem;
+  color: #888;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
 /* --- LAYOUT PC PARA O PRINT (TABELA HORIZONTAL) --- */
@@ -1107,51 +900,8 @@ body::after {
   padding: 0 24px 24px;
 }
 
-.escala-card {
-  position: relative; /* essencial para o ::before funcionar corretamente */
-  border-radius: 20px;
-}
-
-.escala-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 1px;
-
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
-
-  -webkit-mask: 
-    linear-gradient(#000 0 0) content-box, 
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-
-  mask: 
-    linear-gradient(#000 0 0) content-box, 
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.escala-card:hover::before {
-  opacity: 1;
-}
-
-.escala-card {
-  box-shadow: 
-    inset 0 1px 0 rgba(255,255,255,0.06),
-    0 10px 30px rgba(0,0,0,0.6);
-}
-
 .page-header {
-  position: relative;
+  position: relative; /* Isso "prende" o ::after aqui dentro */
 }
 
 .page-header::after {
@@ -1162,6 +912,10 @@ body::after {
   width: 60px;
   height: 2px;
   background: linear-gradient(to right, #d4af37, transparent);
+}
+
+.page-header {
+  position: relative;
 }
 
 .card-header span:last-child {
@@ -1481,31 +1235,6 @@ input:-webkit-autofill:active {
     background: rgba(255, 255, 255, 0.03) !important; /* Mantém o fundo padrão */
 }
 
-/* ================= NAVEGAÇÃO MOBILE (SITE) ================= */
-@media (max-width: 768px) {
-    .tech-table, .tech-table tbody, .tech-table tr {
-        display: block !important;
-        width: 100% !important;
-    }
-    .tech-table thead { display: none !important; }
-
-    .tech-table tr {
-        margin-bottom: 20px !important;
-        padding: 15px !important;
-        background: rgba(255, 255, 255, 0.04) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 12px;
-    }
-
-    /* Data e Dia na mesma linha no site */
-    .tech-table td:nth-child(1),
-    .tech-table td:nth-child(2) {
-        display: inline-block !important;
-        width: auto !important;
-        padding-bottom: 10px !important;
-    }
-}
-
 /* ============================================================
    ESTILOS DE EXPORTAÇÃO (IMAGEM SALVA)
    ============================================================ */
@@ -1554,17 +1283,67 @@ input:-webkit-autofill:active {
     border: 1px solid rgba(255,255,255,0.15) !important;
 }
 
-/* 4. DATA E DIA (SEM LINHA E ALINHADOS) */
-.export-mobile .tech-table td:nth-child(1),
-.export-mobile .tech-table td:nth-child(2),
-.export-web .tech-table td:nth-child(1),
-.export-web .tech-table td:nth-child(2) {
-    font-size: 1.35rem !important;
-    font-weight: 900 !important;
+/* 4. PADRONIZAÇÃO FINAL: FONTE ÚNICA E REMOÇÃO DA BARRA */
+
+.export-mobile .tech-table tr {
+    display: block !important;
+    position: relative !important;
+    padding: 60px 20px 20px 20px !important; 
+    margin-bottom: 15px !important;
+}
+
+/* DIA DA SEMANA / CULTO (ESQUERDA) */
+.export-mobile .tech-table td:nth-child(2) {
+    position: absolute !important;
+    top: 25px !important;
+    left: 20px !important;
+    display: block !important;
+    width: auto !important;
+    font-size: 1.1rem !important; /* Tamanho único */
+    font-weight: 800 !important;
     color: #ffffff !important;
     text-transform: uppercase !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
+    border: none !important;
+}
+
+/* DATA DO MÊS (DIREITA) */
+.export-mobile .tech-table td:nth-child(1) {
+    position: absolute !important;
+    top: 25px !important;
+    right: 20px !important;
+    display: block !important;
+    width: auto !important;
+    font-size: 1.1rem !important; /* Tamanho único */
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    text-align: right !important;
+    border: none !important;
+}
+
+/* LINHAS DE CARGOS (PROJEÇÃO, SOM, ETC) */
+.export-mobile .tech-table td:not(:nth-child(1)):not(:nth-child(2)) {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    /* Ajustado para 5px para não ficar colado na borda do card, já que não tem barra */
+    padding: 12px 0 12px 5px !important; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    font-size: 1.1rem !important; /* Tamanho único */
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    text-transform: uppercase !important;
+    box-sizing: border-box !important;
+}
+
+/* REMOVIDA A BARRA DOURADA (::after removido) */
+
+/* GARANTE QUE O TEXTO INTERNO (NOMES COMO JEAN, ALAN) SIGA O PADRÃO */
+.export-mobile .tech-table td span, 
+.export-mobile .tech-table td strong {
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
 }
 
 /* 5. OPERADORES MOBILE (LABEL À ESQUERDA) */
@@ -1580,9 +1359,9 @@ input:-webkit-autofill:active {
 
 /* 6. CORES DAS FUNÇÕES (WEB E MOBILE) */
 /* No Web (Lista), as cores ficam no próprio texto. No Mobile, no ::before */
-.tech-table td:nth-child(3), .export-mobile .tech-table td:nth-child(3)::before { color: #D4AF37 !important; }
-.tech-table td:nth-child(4), .export-mobile .tech-table td:nth-child(4)::before { color: #00fbff !important; }
-.tech-table td:nth-child(5), .export-mobile .tech-table td:nth-child(5)::before { color: #00ff88 !important; }
+.tech-table td:nth-child(3), .export-mobile .tech-table td:nth-child(3)::before { color: #ffffff !important; }
+.tech-table td:nth-child(4), .export-mobile .tech-table td:nth-child(4)::before { color: #ffffff !important; }
+.tech-table td:nth-child(5), .export-mobile .tech-table td:nth-child(5)::before { color: #ffffff !important; }
 
 /* Esconde os labels (Projeção, Som...) na versão Web para não duplicar */
 .export-web .tech-table td::before {
@@ -1749,15 +1528,6 @@ input:-webkit-autofill:active {
     padding-bottom: 10px; /* Pequeno respiro antes do rodapé */
 }
 
-/* 2. O "mecanismo" que empurra os ícones para baixo */
-.social-grid {
-    margin-top: auto; /* Isso joga a grid para o final da seção */
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px 0; /* Espaço interno para não encostar na linha do rodapé */
-}
-
 /* 3. Garante que o card de missão não estique mais do que o necessário */
 .main-hero {
     margin-bottom: 40px;
@@ -1769,18 +1539,17 @@ input:-webkit-autofill:active {
 }
 
 @media (max-width: 768px) {
-  body.home-active .hero-home {
+  body.inicio .hero-home {
     display: flex;
   }
 
-  body.home-active #main-page-header {
+  body.inicio #main-page-header {
     display: none;
   }
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-
   .hero-home {
     min-height: 100vh;
     width: 100%;
@@ -1789,8 +1558,29 @@ input:-webkit-autofill:active {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    
+    /* Aumentamos o valor de baixo (o terceiro) para subir mais o texto */
+    padding: 20px 20px 200px 20px; 
+    box-sizing: border-box;
   }
+}
+
+@media (max-width: 768px) {
+  /* ... suas regras anteriores da .hero-home (padding, etc) ... */
+
+  .hero-home h1 {
+    font-size: 2.5rem;    /* Aumenta o título (ajuste entre 2rem e 3rem) */
+    line-height: 1.1;     /* Diminui o espaço entre as linhas do título */
+    margin-bottom: 15px;  /* Espaço entre o título e o slogan */
+    font-weight: 800;     /* Deixa a fonte mais "pesada"/negrito */
+  }
+
+  .hero-home .slogan {
+    font-size: 1.2rem;    /* Aumenta o slogan (sub-texto) */
+    opacity: 0.9;         /* Garante que a cor continue legível */
+    max-width: 80%;       /* Evita que o texto encoste nas bordas da tela */
+  }
+}
 
   .hero-home h1,
   .hero-home .slogan {
@@ -1803,10 +1593,21 @@ input:-webkit-autofill:active {
   display: none;
 }
 
+/* No seu Media Query para Mobile (ex: max-width: 768px) */
+@media (max-width: 768px) {
   .main-hero {
-    margin-top: 40px;
+    width: 90%;           /* Ocupa 90% da largura da tela */
+    max-width: 450px;     /* Não deixa ficar gigante em tablets */
+    margin-left: auto;    /* Centraliza na esquerda */
+    margin-right: auto;   /* Centraliza na direita */
+    margin-top: 40px;     /* Mantém seu espaçamento superior */
+    margin-bottom: 40px;  /* Mantém seu espaçamento inferior */
+    
+    /* Importante: se ele tiver position absolute no desktop, mude aqui */
+    position: relative;   
+    left: 0;
+    transform: none;      /* Remove possíveis deslocamentos de desktop */
   }
-
 }
 
 .hero-home h1 {
@@ -1821,79 +1622,550 @@ input:-webkit-autofill:active {
   opacity: 0.9;
 }
 
-/* Estado inicial: Invisível e deslocado para baixo */
+/* Estado padrão (desktop) */
 .hidden-element {
-    opacity: 0;
-    filter: blur(5px);
-    transform: translateY(30px);
-    transition: all 0.8s ease-out; /* Controla a suavidade */
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition: all 0.8s ease;
 }
 
-/* Estado final: Visível e na posição correta */
-.show {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-}
-
-/* Container das Boas-Vindas */
-.welcome-section {
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-/* Classe que aplicaremos via JS quando o usuário rolar */
-.fade-out-up {
-    opacity: 0;
-    transform: translateY(-50px); /* Faz as boas-vindas subirem e sumirem */
-    pointer-events: none;
-}
-
-/* Ajuste no estado inicial do Card (Entrada) */
-.hidden-element {
-    opacity: 0;
-    transform: translateY(100vh); /* Começa lá no final da tela (efeito de nova página) */
-    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Estado padrão (Web/Desktop) */
-.hidden-element {
-    opacity: 1; /* Começa visível no PC */
-    transform: translateY(0);
-    transition: all 0.8s ease;
-}
-
-/* Estado apenas para Mobile (telas menores que 768px) */
+/* Mobile: começa escondido */
 @media (max-width: 768px) {
-    .hidden-element {
-        opacity: 0;
-        transform: translateY(50vh); /* Só fica 'escondido' no celular */
+  .hidden-element {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(5px);
+  }
+
+  .hidden-element.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.escala-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+
+  mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  .escala-card:hover {
+  transform: translateY(-12px);
+  z-index: 100;
+}
+
+}
+
+body {
+    background-image: url('../img/fundo1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url('../img/fundo1.jpg') center/cover no-repeat;
+    filter: blur(4px);
+    z-index: -1;
+}
+
+.social-footer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 40px 0 20px;
+}
+
+.social-footer .social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.social-footer .icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 6px;
+}
+
+.social-footer .social-item {
+    width: 90px;
+}
+
+.inicio-only {
+    display: none;
+}
+
+body.inicio .inicio-only {
+    display: flex;
+}
+
+.social-footer .social-item {
+    transition: all 0.25s ease;
+}
+
+.social-footer .social-item:hover {
+    transform: translateY(-4px);
+    opacity: 1;
+    filter: brightness(1.3);
+}
+
+.social-footer .social-item:hover .icon {
+    transform: scale(1.15);
+}
+
+.social-footer .icon {
+    transition: transform 0.25s ease;
+}
+
+.export-web .tech-table td::before {
+  display: none !important;
+}
+
+/* --- ESTILOS PARA OS NOMES (VALORES) --- */
+/* Estes estilos valem para ambas as versões, focando na cor do nome do operador */
+
+.tech-table td[data-label="Projeção"] {
+  color: #d4af37 !important;
+  font-weight: 700;
+}
+
+.tech-table td[data-label="Mesa de Som"] {
+  color: #00fbff !important;
+  font-weight: 700;
+}
+
+.tech-table td[data-label="Transmissão"] {
+  color: #00ff88 !important;
+  font-weight: 700;
+}
+
+.tech-table td[data-label="Data"],
+.tech-table td[data-label="Culto"] {
+  color: #e5e7eb !important;
+  font-weight: 800;
+}
+
+/* --- RESOLUÇÃO DO PROBLEMA: EXCLUSIVO PARA WEB (DESKTOP) --- */
+/* Este bloco só roda se a tela for maior que 768px */
+@media screen and (min-width: 769px) {
+  
+  /* Remove o texto repetido (o data-label) que aparece antes do nome */
+  .tech-table td::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  /* Garante que o texto da célula não tente se comportar como flexbox da versão mobile */
+  .tech-table td {
+    display: table-cell !important; 
+    text-align: left;
+    padding: 15px;
+    color: #ffffff; /* Cor padrão para os nomes se não houver data-label */
+  }
+
+  /* Mostra o cabeçalho principal que você quer que apareça na Web */
+  .tech-table thead {
+    display: table-header-group !important;
+  }
+}
+
+/* ============================================================
+   1. CORES DOS OPERADORES (Valem para Web e Mobile)
+   ============================================================ */
+.tech-table td[data-label="Projeção"] { color: #ffffff !important; font-weight: 700; }
+.tech-table td[data-label="Mesa de Som"] { color: #ffffff !important; font-weight: 700; }
+.tech-table td[data-label="Transmissão"] { color: #ffffff !important; font-weight: 700; }
+
+/* ============================================================
+   2. VERSÃO WEB (DESKTOP) - PROTEÇÃO DE ESTRUTURA
+   ============================================================ */
+@media screen and (min-width: 769px) {
+  .tech-table {
+    display: table !important;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.03) !important; /* Seu fundo de vidro web */
+    backdrop-filter: blur(10px);
+    border-collapse: collapse !important;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .tech-table thead {
+    display: table-header-group !important;
+  }
+
+  .tech-table tr {
+    display: table-row !important;
+    background: none !important; /* Remove o fundo individual da linha na web */
+  }
+
+  .tech-table td {
+    display: table-cell !important;
+    padding: 15px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    text-align: left !important;
+  }
+
+  /* Remove o marcador dourado e os labels na web */
+  .tech-table td::before, 
+  .tech-table td::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
+/* ============================================================
+   1. CORES E FONTES (Global)
+   ============================================================ */
+.tech-table td[data-label="Projeção"] { color: #ffffff !important; font-weight: 700; }
+.tech-table td[data-label="Mesa de Som"] { color: #ffffff !important; font-weight: 700; }
+.tech-table td[data-label="Transmissão"] { color: #ffffff !important; font-weight: 700; }
+
+/* ============================================================
+   2. VERSÃO WEB (DESKTOP) - RESET ABSOLUTO
+   ============================================================ */
+@media screen and (min-width: 769px) {
+  .tech-table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 12px;
+  }
+
+  .tech-table thead { display: table-header-group !important; }
+  .tech-table tr { display: table-row !important; }
+
+  .tech-table td {
+    display: table-cell !important;
+    position: static !important; /* ISSO RESOLVE O AMONTOADO */
+    padding: 15px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    text-align: left !important;
+    color: #ffffff !important;
+    vertical-align: middle !important;
+  }
+
+  /* Garante que nada do mobile apareça aqui */
+  .tech-table td::before, 
+  .tech-table td::after {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+/* 1. CORES DOS NOMES (Funciona em ambos) */
+.tech-table td[data-label="Projeção"] { color: #ffffff !important; font-weight: 700; }
+.tech-table td[data-label="Mesa de Som"] { color: #ffffff !important; font-weight: 700; }
+.tech-table td[data-label="Transmissão"] { color: #ffffff !important; font-weight: 700; }
+
+/* ============================================================
+   2. VERSÃO WEB (DESKTOP) - FOCO EM LIMPEZA TOTAL
+   ============================================================ */
+@media screen and (min-width: 769px) {
+    .tech-table {
+        display: table !important;
+        width: 100% !important;
+        border-collapse: collapse !important;
+        background: rgba(0, 0, 0, 0.2) !important;
+        table-layout: auto !important; /* Força o alinhamento em colunas */
+    }
+
+    .tech-table thead {
+        display: table-header-group !important; /* Garante que o cabeçalho apareça */
+    }
+
+    .tech-table tr {
+        display: table-row !important; /* Linhas horizontais padrão */
+        position: static !important;
+    }
+
+    .tech-table td {
+        display: table-cell !important; /* Células uma ao lado da outra */
+        position: static !important;    /* ANULA O AMONTOADO DO MOBILE */
+        padding: 15px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        text-align: left !important;
+        vertical-align: middle !important;
+        width: auto !important;
+    }
+
+    /* Remove rótulos e barras douradas na Web */
+    .tech-table td::before, 
+    .tech-table td::after {
+        content: none !important;
+        display: none !important;
+    }
+}
+
+/* =====================================================
+   1. CORES DOS OPERADORES (GLOBAL)
+===================================================== */
+.tech-table td[data-label="Projeção"] {
+    color: #d4af37 !important;
+    font-weight: 700;
+}
+
+.tech-table td[data-label="Mesa de Som"] {
+    color: #00fbff !important;
+    font-weight: 700;
+}
+
+.tech-table td[data-label="Transmissão"] {
+    color: #00ff88 !important;
+    font-weight: 700;
+}
+
+/* =====================================================
+   2. DESKTOP (TABELA NORMAL)
+===================================================== */
+@media screen and (min-width: 769px) {
+
+    .tech-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        backdrop-filter: blur(10px);
+        table-layout: fixed !important;
+    }
+
+    .tech-table thead {
+        display: table-header-group !important;
+    }
+
+    .tech-table tr {
+        display: table-row !important;
+    }
+
+    .tech-table th,
+    .tech-table td {
+        display: table-cell !important;
+        padding: 15px 10px !important;
+        text-align: left !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        vertical-align: middle !important;
+    }
+
+    /* remove pseudo-elementos no desktop */
+    .tech-table td::before,
+    .tech-table td::after {
+        content: none !important;
+        display: none !important;
+    }
+}
+
+/* =====================================================
+   3. MOBILE (CARDS) - ATUALIZADO (ESTILO IMAGEM)
+===================================================== */
+@media screen and (max-width: 768px) {
+
+    .tech-table,
+    .tech-table tbody {
+        display: block !important;
+        background: transparent !important;
+    }
+
+    .tech-table thead {
+        display: none !important;
+    }
+
+    /* Remove card geral do fundo */
+    .tech-table {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Card individual */
+    .tech-table tr {
+        display: block !important;
+        position: relative !important;
+        margin-bottom: 20px !important;
+
+        /* Aumentamos o padding superior para dar espaço ao header */
+        padding: 55px 10px 15px !important;
+
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 20px !important; /* Bordas mais arredondadas conforme a foto */
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        overflow: hidden !important;
+    }
+
+/* HEADER DO CARD - NOME DO CULTO (Lado Esquerdo) */
+    .tech-table td[data-label="Culto"] {
+        position: absolute !important;
+        top: 20px !important;
+        left: 20px !important;
+        right: auto !important; /* Garante que não puxe para a direita */
+
+        font-weight: 800;
+        color: #FFFFFF !important;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+
+        border: none !important;
+        padding: 0 !important;
+        background: transparent !important;
+        display: block !important;
+        width: auto !important;
+    }
+
+/* HEADER DO CARD - DATA (Lado Direito) */
+    .tech-table td[data-label="Data"] {
+        position: absolute !important;
+        top: 20px !important;
+        right: 20px !important;
+        left: auto !important; /* Garante que não puxe para a esquerda */
+
+        font-weight: 800;
+        color: #FFFFFF !important;
+        font-size: 0.85rem;
+        text-align: right;
+
+        border: none !important;
+        padding: 0 !important;
+        background: transparent !important;
+        display: block !important;
+        width: auto !important;
+    }
+
+    /* LINHAS INTERNAS (PROJEÇÃO, SOM, ETC) */
+    .tech-table td:not([data-label="Data"]):not([data-label="Culto"]) {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+
+        padding: 12px 20px !important;
+        position: relative !important;
+
+        /* Fundo levemente mais escuro para as linhas como na foto */
+        background: rgba(0, 0, 0, 0.1); 
+        margin-bottom: 2px;
+        color: #fff !important;
+    }
+
+    /* Barra Dourada Lateral */
+    .tech-table td:not([data-label="Data"]):not([data-label="Culto"])::after {
+        content: '';
+        position: absolute;
+        left: 8px; /* Ajustado para dentro do padding */
+        top: 20%;
+        bottom: 20%;
+        width: 2px;
+        background: #d4af37;
+    }
+
+    /* Nome da Função (Lado Esquerdo) */
+    .tech-table td:not([data-label="Data"]):not([data-label="Culto"])::before {
+        content: attr(data-label);
+        font-size: 0.8rem;
+        color: #d4af37; /* Cor dourada no label conforme a foto */
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-left: 10px; /* Afasta da barrinha */
     }
     
-    .hidden-element.show {
-        opacity: 1;
-        transform: translateY(0);
+    /* Nome do Responsável (Lado Direito) */
+    /* Garante que o nome da pessoa fique em negrito e branco */
+    .tech-table td:not([data-label="Data"]):not([data-label="Culto"]) {
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.9rem;
     }
 }
 
+/* Forçar nomes brancos apenas na versão Website (acima de 768px) */
 @media (min-width: 769px) {
-    .hidden-element {
-        opacity: 1;
-        transform: none;
-        filter: none;
+    /* Alvos: spans e strongs dentro das células da tabela tech-table */
+    .tech-table td span, 
+    .tech-table td strong,
+    .tech-table td {
+        color: #ffffff !important;
     }
 }
 
-/* --- FORÇAR COR DOURADA NO SUBTÍTULO MOBILE --- */
+/* AJUSTES EXCLUSIVOS PARA MOBILE (Mapa de Demandas) */
 @media (max-width: 768px) {
-    /* Selecionando o subtítulo especificamente na home mobile */
-    .hero-home .slogan,
-    .secao-home .subtitle {
-        color: #d4af37 !important; /* Força a cor dourada */
-        opacity: 1 !important;    /* Garante que não esteja transparente */
+    .demanda-grid {
+        display: flex !important;
+        flex-direction: column !important; /* Empilha um embaixo do outro */
+        gap: 12px !important;
+        padding: 10px !important;
+    }
+
+    .demanda-card {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px !important;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    /* Quando o card é clicado */
+    .demanda-card.active {
+        min-height: 80vh !important; /* Quase a tela inteira */
+        background: rgba(15, 15, 15, 0.98) !important;
+        border-color: #d4af37 !important;
+        z-index: 10;
+    }
+
+    .demanda-header {
+        padding: 22px !important;
+        font-size: 1.1rem !important; /* Padronizado com o resto do app */
+    }
+
+    .demanda-body {
+        max-height: 0;
+        opacity: 0;
+        overflow-y: auto; /* Permite rolar o texto dentro do card aberto */
+        transition: all 0.5s ease;
+    }
+
+    .demanda-card.active .demanda-body {
+        max-height: 70vh !important; /* Limita a altura do texto para caber na tela */
+        opacity: 1 !important;
+        padding: 10px 20px 40px 20px !important;
+    }
+
+    .demanda-card.active .demanda-arrow {
+        transform: rotate(45deg);
+        color: #ff4d4d;
     }
 }

@@ -72,39 +72,45 @@ function fecharLogin() {
 let usuarioLogado = false; // Controle de acesso
 
 function mostrarSecao(id, elemento) {
-    // 1. FECHAR MENU MOBILE AUTOMATICAMENTE
-    // Localiza o overlay e o ícone do hambúrguer
-const menuOverlay = document.getElementById('menuOverlay');
-const menuIcon = document.querySelector('.menu-hamburger-mobile');
 
-if (menuOverlay) {
-    menuOverlay.classList.remove('active');
-}
+    // 1. CONTROLE DE EXIBIÇÃO (INÍCIO)
+    document.body.classList.remove('inicio');
+    if (id === 'inicio') {
+        document.body.classList.add('inicio');
+    }
 
-if (menuIcon) {
-    menuIcon.classList.remove('active');
-}
+    // 2. FECHAR MENU MOBILE AUTOMATICAMENTE
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuIcon = document.querySelector('.menu-hamburger-mobile');
 
-document.body.style.overflow = 'auto';
+    if (menuOverlay) {
+        menuOverlay.classList.remove('active');
+    }
 
-    // 2. GERENCIAMENTO DE MODAIS
+    if (menuIcon) {
+        menuIcon.classList.remove('active');
+    }
+
+    document.body.style.overflow = 'auto';
+
+    // 3. GERENCIAMENTO DE MODAIS
     const modal = document.getElementById('modalLogin');
     if (modal) {
         modal.style.display = 'none';
     }
 
-    // 3. LOGICA DE ACESSO RESTRITO (DOWNLOADS)
+    // 4. ACESSO RESTRITO (DOWNLOADS)
     if (id === 'links') {
         if (modal) {
             modal.style.display = 'flex';
             document.getElementById('usuarioInput').value = '';
             document.getElementById('senhaInput').value = '';
             document.getElementById('erroLogin').style.display = 'none';
-            return; 
+            return;
         }
     }
 
-    // 4. NAVEGAÇÃO ENTRE SEÇÕES
+    // 5. NAVEGAÇÃO ENTRE SEÇÕES
     const secoes = document.querySelectorAll('.secao');
     secoes.forEach(secao => {
         secao.style.display = 'none';
@@ -115,7 +121,7 @@ document.body.style.overflow = 'auto';
         secaoAlvo.style.display = 'block';
     }
 
-    // 5. ATUALIZAÇÃO DINÂMICA DO HEADER
+    // 6. ATUALIZAÇÃO DO HEADER
     const tituloPagina = document.getElementById('page-title');
     const subtituloPagina = document.getElementById('page-subtitle');
     const btnVerMensal = document.getElementById('btn-ver-mensal');
@@ -151,7 +157,7 @@ document.body.style.overflow = 'auto';
         subtituloPagina.innerText = "Detalhamento de funções e fluxo de trabalho.";
     }
 
-    // 6. ATUALIZAÇÃO DO ITEM ATIVO NO MENU
+    // 7. ATUALIZAÇÃO DO MENU ATIVO
     if (elemento) {
         const todosOsLinks = document.querySelectorAll('.nav-links li, .nav-links-mobile li a');
         todosOsLinks.forEach(link => {
@@ -159,15 +165,8 @@ document.body.style.overflow = 'auto';
         });
         elemento.classList.add('active');
     }
-
- document.body.classList.remove('home-active');
-
-if (id === 'inicio') {
-    document.body.classList.add('home-active');
 }
     
-}
-
 function executarTrocaDePagina(id, elemento) {
     // Esconde absolutamente todas as seções
     document.querySelectorAll('.secao').forEach(s => s.style.display = 'none');
@@ -423,14 +422,14 @@ function buscarPessoa() {
 document.addEventListener('DOMContentLoaded', () => {
     carregarDados();
 
-    const abrirEscala = sessionStorage.getItem("abrirEscala");
+ const abrirEscala = sessionStorage.getItem("abrirEscala");
 
-    if (abrirEscala === "true") {
-        sessionStorage.removeItem("abrirEscala");
-        mostrarSecao('escala');
-    } else {
-        document.body.classList.add('home-active');
-    }
+if (abrirEscala === "true") {
+    sessionStorage.removeItem("abrirEscala");
+    mostrarSecao('escala');
+} else {
+    mostrarSecao('inicio');
+}
 
     document.addEventListener('click', function (e) {
         const header = e.target.closest('.demanda-header');
