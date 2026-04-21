@@ -307,8 +307,8 @@ function buscarPessoa() {
 function renderizar() {
     const containerSemana = document.getElementById('escala-semanal-container');
     const corpoTabela = document.getElementById('corpo-tabela-mensal');
-    const proximo = getProximoEvento();
-    const semanaAtual = getProximosEventos(3);
+    const proximo = getProximoEvento ? getProximoEvento() : null;
+    const semanaAtual = getProximosEventos ? getProximosEventos(3) : [];
 
     // Resumos do Topo
     const elTotal = document.getElementById("resumo-total");
@@ -323,42 +323,61 @@ function renderizar() {
 
     /* CARDS SEMANAIS */
     if (containerSemana) {
-        containerSemana.innerHTML = semanaAtual.length ? semanaAtual.map(item => {
-            let estilo = ""; 
-            let tag = "";
+        if (semanaAtual.length) {
+            containerSemana.innerHTML = semanaAtual.map((item, index) => {
+                let estiloExtra = ""; 
+                let tag = "";
 
-            if (proximo && normalizarData(item.data).getTime() === normalizarData(proximo.data).getTime()) {
-                estilo = "border-top: 2px solid #86840f; border-left: 2px solid #86840f;";
-                tag = " • PRÓXIMO";
-            } else if (ehHoje(item.data)) {
-                estilo = "border-top: 2px solid #fff; border-left: 2px solid #fff;";
-                tag = " • HOJE";
-            } else {
-                estilo = "border-top: 1px solid var(--border); border-left: 1px solid var(--border);";
-                if (ehPassado(item.data)) estilo += "opacity:0.4;";
-            }
+                // Lógica de destaque (Próximo, Hoje ou Passado)
+                if (proximo && normalizarData(item.data).getTime() === normalizarData(proximo.data).getTime()) {
+                    estiloExtra = "border-top: 2px solid #86840f; border-left: 2px solid #86840f;";
+                    tag = " • PRÓXIMO";
+                } else if (ehHoje(item.data)) {
+                    estiloExtra = "border-top: 2px solid #fff; border-left: 2px solid #fff;";
+                    tag = " • HOJE";
+                } else if (ehPassado(item.data)) {
+                    estiloExtra = "opacity: 0.4;";
+                }
 
-            return `
-            <div class="escala-card" style="${estilo}">
-                <div class="card-header">
-                    <span class="turno-badge">${item.culto}${tag}</span>
-                    <span class="card-date">${formatarData(item.data)}</span>
-                </div>
-                <div class="card-body">
-                    <div class="role"><span class="role-label">PROJEÇÃO</span><span class="role-name">${item.projecao}</span></div>
-                    <div class="role"><span class="role-label">MESA DE SOM</span><span class="role-name">${item.mesaSom}</span></div>
-                    <div class="role"><span class="role-label">TRANSMISSÃO</span><span class="role-name">${item.transmissao}</span></div>
-                </div>
-            </div>`;
-        }).join('') : "<p>Nenhuma escala encontrada.</p>";
+                // Retornamos o card com a classe 'hidden-element' para o fader funcionar
+                return `
+                <div class="escala-card hidden-element" style="${estiloExtra}">
+                    <div class="card-header">
+                        <span class="turno-badge">${item.culto}${tag}</span>
+                        <span class="card-date">${formatarData(item.data)}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="role"><span class="role-label">PROJEÇÃO</span><span class="role-name">${item.projecao}</span></div>
+                        <div class="role"><span class="role-label">MESA DE SOM</span><span class="role-name">${item.mesaSom}</span></div>
+                        <div class="role"><span class="role-label">TRANSMISSÃO</span><span class="role-name">${item.transmissao}</span></div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            // DISPARADOR DO FADER: Faz os cards aparecerem um após o outro
+            setTimeout(() => {
+                const cards = containerSemana.querySelectorAll('.escala-card');
+                cards.forEach((card, i) => {
+                    setTimeout(() => {
+                        card.classList.add('show-element');
+                    }, i * 150); // Delay de 150ms entre cada card
+                });
+            }, 100);
+
+        } else {
+            containerSemana.innerHTML = "<p>Nenhuma escala encontrada.</p>";
+        }
     }
 
     /* TABELA MENSAL */
-    if (corpoTabela) {
+    if (corpoTabela && typeof ESCALA !== 'undefined') {
         corpoTabela.innerHTML = ESCALA.map(item => {
             let bgLinha = "transparent";
-            if (proximo && normalizarData(item.data).getTime() === normalizarData(proximo.data).getTime()) bgLinha = "rgba(255, 80, 80, 0.08)";
-            else if (ehHoje(item.data)) bgLinha = "rgba(255,255,255,0.08)";
+            if (proximo && normalizarData(item.data).getTime() === normalizarData(proximo.data).getTime()) {
+                bgLinha = "rgba(255, 255, 0, 0.05)"; // Destaque suave para a linha do próximo culto
+            } else if (ehHoje(item.data)) {
+                bgLinha = "rgba(255, 255, 255, 0.05)";
+            }
 
             return `
             <tr style="background: ${bgLinha}; ${ehPassado(item.data) ? 'opacity:0.5;' : ''}">
@@ -370,9 +389,9 @@ function renderizar() {
             </tr>`;
         }).join('');
     }
-    renderMapaDemandas();
-}
 
+    if (typeof renderMapaDemandas === 'function') renderMapaDemandas();
+}
 /* =========================
    MAPA DE DEMANDAS
 ========================= */
@@ -557,3 +576,18 @@ function toggleSenha() {
         toggleIcon.innerHTML = olhoAberto; // Mostra o aberto para ver
     }
 }
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show-element");
+        }
+    });
+}, { threshold: 0.1 });
+
+// Seleciona o elemento e começa a observar
+const target = document.querySelector(".main-hero");
+if (target) {
+    observer.observe(target);
+}
+

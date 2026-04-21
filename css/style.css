@@ -2169,3 +2169,73 @@ body.inicio .inicio-only {
         color: #ff4d4d;
     }
 }
+
+/* Define a animação */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px); /* Opcional: dá um leve movimento de baixo para cima */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplica ao card */
+.card-missao {
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+/* Estado inicial do card */
+.hidden-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    visibility: hidden;
+}
+
+/* Classe que será adicionada via JS */
+.show-element {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Seleciona os cards específicos */
+.main-hero, .card-escalas {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer; /* Indica que o card é interativo */
+}
+
+/* Efeito ao passar o mouse */
+.main-hero:hover, .card-escalas:hover {
+    transform: translateY(-5px); /* Sobe o card levemente */
+    background-color: rgba(255, 255, 255, 0.15); /* Aumenta um pouco a opacidade do glass */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Sombra projetada para dar profundidade */
+    border-color: rgba(255, 255, 255, 0.4); /* Opcional: destaca a borda */
+}
+
+/* Isso garante que qualquer card dentro da grade de escala tenha o efeito */
+.tech-grid > div { 
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease;
+    cursor: pointer;
+}
+
+.tech-grid > div:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Classe para o fader (esmaecimento) */
+.fader-ativado {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Estado inicial (escondido) para os cards da escala */
+.card-escala-invisivel {
+    opacity: 0;
+    transform: translateY(10px);
+}
