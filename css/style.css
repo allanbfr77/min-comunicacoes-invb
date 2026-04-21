@@ -2315,3 +2315,19 @@ button[onclick*="salvarEscalaComoImagem"]:hover {
     background: rgba(255, 255, 255, 0.1) !important; /* Leve brilho ao fundo */
     border-radius: 50%;
 }
+
+@media (max-width: 768px) {
+  /* Pinta de dourado apenas o parágrafo que NÃO está dentro de um glass-card */
+  #inicio p:not(.glass-card p) {
+    color: #d4af37 !important;
+  }
+
+  /* Força o branco em tudo que estiver dentro do card (Missão) */
+  .glass-card, 
+  .glass-card * {
+    color: #ffffff !important;
+  }
+
+  /* Caso o título "Nossa Missão" tenha ficado branco e você queira mantê-lo assim,
+     essa regra acima já garante isso. */
+}
