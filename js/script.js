@@ -384,7 +384,7 @@ function renderizar() {
                 <td data-label="Data"><strong>${formatarData(item.data)}</strong></td>
                 <td data-label="Culto"><span class="turno-badge">${item.culto}</span></td>
                 <td data-label="Projeção"><strong>${item.projecao}</strong></td>
-                <td data-label="Som"><strong>${item.mesaSom}</strong></td>
+                <td data-label="Mesa de Som"><strong>${item.mesaSom}</strong></td>
                 <td data-label="Transmissão"><strong>${item.transmissao}</strong></td>
             </tr>`;
         }).join('');
