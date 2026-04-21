@@ -359,7 +359,10 @@ body {
 }
 
 .btn-action {
-  background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+  /* Substituído o gradient pela cor sólida */
+  background: #b47e00; 
+  
+  /* Mantendo suas outras configurações */
   color: #000;
   border: none;
   padding: 12px 24px;
@@ -371,19 +374,29 @@ body {
   cursor: pointer;
 }
 
+/* Dica: Adicione um hover para o botão reagir ao mouse */
 .btn-action:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+  background: #d4a017; /* Um tom um pouco mais claro para o efeito */
+  transform: translateY(-2px); /* Leve movimento para cima */
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #fff;
-  border: 1px solid var(--border);
-  padding: 10px 18px;
-  border-radius: 8px;
+  background: #b47e00;
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
   font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
   cursor: pointer;
+}
+
+/* Mantendo o efeito de hover para consistência */
+.btn-secondary:hover {
+  background: #d4a017;
+  transform: translateY(-2px);
 }
 
 .main-hero h2 {
@@ -2238,4 +2251,67 @@ body.inicio .inicio-only {
 .card-escala-invisivel {
     opacity: 0;
     transform: translateY(10px);
+}
+
+/* O header continua fixo se você quiser */
+.header {
+  position: sticky;
+  top: 0;
+  background: #eee;
+  padding: 1rem;
+}
+
+/* O segredo: o conteúdo cresce e empurra o footer para baixo */
+.content {
+  flex: 1;
+}
+
+.footer {
+  background: #000000;
+  color: white;
+  padding: 1rem;
+}
+
+/* Alvo certeiro no card "Nossa Missão" */
+div.glass-card.main-hero {
+    border: 1.8px solid #d4af37 !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* Garante que o efeito de vidro (glassmorphism) não oculte a borda */
+.glass-card.main-hero {
+    background-clip: padding-box; 
+}
+
+/* Mira especificamente no botão que tem a função de salvar imagem */
+button[onclick*="salvarEscalaComoImagem"] {
+    background: transparent !important; /* Remove o fundo amarelo/bronze */
+    color: #ffffff !important;           /* Deixa o ícone branco */
+    border: none !important;
+    padding: 10px !important;            /* Ajusta o espaçamento ao redor do ícone */
+    font-size: 1.5rem !important;        /* Aumenta o tamanho do ícone */
+    text-indent: -9999px;                /* Esconde o texto "SALVAR COMO IMAGEM" */
+    width: 50px;                         /* Define uma largura fixa para ser circular */
+    height: 50px;                        /* Define uma altura fixa */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+/* Faz o ícone reaparecer (já que o text-indent escondeu tudo) */
+button[onclick*="salvarEscalaComoImagem"]::before {
+    content: '📸'; /* Ou o código do seu ícone de download/camera */
+    text-indent: 0;
+    display: block;
+}
+
+/* Efeito de destaque ao passar o mouse */
+button[onclick*="salvarEscalaComoImagem"]:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1) !important; /* Leve brilho ao fundo */
+    border-radius: 50%;
 }
