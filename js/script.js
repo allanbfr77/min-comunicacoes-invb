@@ -491,17 +491,22 @@ window.addEventListener('scroll', function() {
    IMAGEM
 ========================= */
 
-async function salvarEscalaComoImagem() {
+async function salvarEscalaComoImagem(event) {
     const area = document.getElementById('capture-area');
     const isMobile = window.innerWidth <= 768;
-    const btn = event.currentTarget;
-    
-    btn.innerText = "Gerando...";
+
+    // ✅ FIX 1: Salva referência ao botão ANTES do primeiro await
+    // No Safari, event.currentTarget vira null após operações assíncronas
+    const btn = event.currentTarget || event.target;
+
+    // ✅ FIX 2: Previne duplo disparo (problema comum no Safari/iOS)
+    if (btn.disabled) return;
+
+    btn.style.opacity = "0.5";
     btn.disabled = true;
 
     const clone = area.cloneNode(true);
 
-    // Ajuste apenas se for Mobile para manter Data e Dia na mesma linha do card
     if (isMobile) {
         clone.querySelectorAll('tr').forEach(tr => {
             const tds = tr.querySelectorAll('td');
@@ -516,12 +521,11 @@ async function salvarEscalaComoImagem() {
     }
 
     clone.classList.add(isMobile ? "export-mobile" : "export-web");
-    clone.style.width = isMobile ? "1450px" : "1300px"; 
-    
+    clone.style.width = isMobile ? "1450px" : "1300px";
     clone.style.position = "fixed";
     clone.style.top = "0";
     clone.style.left = "-9999px";
-    
+
     document.body.appendChild(clone);
 
     await new Promise(resolve => setTimeout(resolve, 300));
@@ -533,15 +537,40 @@ async function salvarEscalaComoImagem() {
             useCORS: true
         });
 
-        const link = document.createElement('a');
-        link.download = `Escala_${isMobile ? 'Mobile' : 'Web'}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
+        // ✅ FIX 3: Safari/iOS não suporta link.click() para downloads.
+        // Detecta Safari e abre a imagem numa nova aba para o usuário salvar manualmente.
+        const dataUrl = canvas.toDataURL('image/png');
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        if (isSafari) {
+            // Abre em nova aba — usuário pressiona e segura para salvar no iOS
+            const novaAba = window.open();
+            novaAba.document.write(`
+                <html>
+                  <head><title>Salvar Escala</title></head>
+                  <body style="margin:0;background:#000;display:flex;flex-direction:column;
+                               align-items:center;padding:20px;font-family:sans-serif;">
+                    <p style="color:#fff;margin-bottom:12px;">
+                      Pressione e segure a imagem para salvá-la 📥
+                    </p>
+                    <img src="${dataUrl}" style="max-width:100%;border-radius:8px;" />
+                  </body>
+                </html>
+            `);
+        } else {
+            // Chrome, Edge, Firefox: download direto funciona normalmente
+            const link = document.createElement('a');
+            link.download = `Escala_${isMobile ? 'Mobile' : 'Web'}.png`;
+            link.href = dataUrl;
+            link.click();
+        }
+
     } catch (erro) {
-        console.error("Erro:", erro);
+        console.error("Erro ao gerar imagem:", erro);
+        alert("Não foi possível gerar a imagem. Tente novamente.");
     } finally {
         document.body.removeChild(clone);
-        btn.innerText = "📸 SALVAR COMO IMAGEM";
+        btn.style.opacity = "1";
         btn.disabled = false;
     }
 }

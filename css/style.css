@@ -1684,14 +1684,12 @@ input:-webkit-autofill:active {
 
   opacity: 0;
   transition: opacity 0.4s ease;
-
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  .escala-card:hover {
-  transform: translateY(-12px);
-  z-index: 100;
 }
 
+/* FORA do before */
+.escala-card:hover {
+  transform: translateY(-12px);
+  z-index: 100;
 }
 
 body {
