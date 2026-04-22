@@ -13,11 +13,7 @@
   --card-bg:        rgba(255, 255, 255, 0.05);
   --border:         rgba(255, 255, 255, 0.1);
   --text-primary:   #ffffff;
-<<<<<<< HEAD
-  --text-secondary: #94a3b8;
-=======
   --text-secondary: #b8c3d6;
->>>>>>> 0c4cd35 (version 4.1)
 }
 
 /* ── Reset ── */
@@ -38,39 +34,19 @@ body {
   overflow-x: hidden;
   position: relative;
   padding-bottom: 60px;
-<<<<<<< HEAD
   background-image: url('../img/fundo1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-=======
->>>>>>> 0c4cd35 (version 4.1)
 }
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-<<<<<<< HEAD
   background: url('../img/fundo1.jpg') center/cover no-repeat;
   filter: blur(4px);
   z-index: -1;
-=======
-  background: rgba(5, 5, 7, 0.55);
-  z-index: -1;
-}
-
-body.bg-ready {
-  background-image: url('../img/fundo1.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-body.bg-ready::before {
-  background: url('../img/fundo1.jpg') center/cover no-repeat;
-  filter: blur(4px);
->>>>>>> 0c4cd35 (version 4.1)
 }
 
 /* ── Tipografia ── */

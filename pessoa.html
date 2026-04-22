@@ -12,18 +12,13 @@
     :root {
         --bg-dark: #0a0a0c;
         --accent: #d4af37;
-        --color-proj: #3b82f6;  /* Azul */
-        --color-mesa: #22c55e;  /* Verde */
-        --color-trans: #facc15; /* Amarelo */
+        --color-proj: #3b82f6;
+        --color-mesa: #22c55e;
+        --color-trans: #facc15;
     }
 
     body {
         background-color: var(--bg-dark);
-        background-image: url('img/fundo1.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
         font-family: 'Inter', sans-serif;
         color: #fff;
         margin: 0;
@@ -33,12 +28,22 @@
         overflow-x: hidden;
     }
 
+    /* Fundo com imagem — compatível com Safari iOS (sem fixed no background-image) */
     body::before {
         content: "";
         position: fixed;
         inset: 0;
+        background: url('img/fundo1.jpg') center/cover no-repeat;
+        filter: blur(4px);
+        z-index: -2;
+    }
+
+    /* Overlay escuro por cima da imagem */
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
         background: rgba(5, 5, 7, 0.45);
-        backdrop-filter: blur(3px);
         z-index: -1;
     }
 
@@ -74,17 +79,16 @@
         transition: 0.3s;
     }
 
-.grid-dashboard {
+    .grid-dashboard {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 28px;
-        align-items: start; /* Impede que os cards estiquem verticalmente */
+        align-items: start;
     }
 
-    /* Adicione isto para garantir que o card não tente preencher a altura */
     .grid-dashboard > .card:first-child {
         height: fit-content;
-        display: block; /* Garante que ele não se comporte como flex se não precisar */
+        display: block;
     }
 
     .card {
@@ -123,7 +127,6 @@
     .stat:nth-child(3) strong { color: var(--color-mesa); }
     .stat:nth-child(4) strong { color: var(--color-trans); }
 
-    /* GRÁFICO PIZZA */
     .pie {
         width: 170px;
         height: 170px;
@@ -136,7 +139,6 @@
         );
     }
 
-    /* LEGENDA - DESKTOP LADO A LADO */
     .legend-container {
         display: flex;
         flex-wrap: wrap;
@@ -155,7 +157,6 @@
 
     .dot { width: 12px; height: 12px; border-radius: 50%; }
 
-    /* HISTÓRICO */
     .item {
         padding: 16px;
         border-radius: 14px;
@@ -164,12 +165,11 @@
     }
 
     .item strong { color: #fff; }
-    
-    /* OPERADORES - DESKTOP LADO A LADO */
-    .muted { 
-        color: #94a3b8; 
-        font-size: 0.85rem; 
-        margin-top: 8px; 
+
+    .muted {
+        color: #94a3b8;
+        font-size: 0.85rem;
+        margin-top: 8px;
         display: flex;
         gap: 5px;
         flex-wrap: wrap;
@@ -179,26 +179,23 @@
     .txt-mesa { color: var(--color-mesa); font-weight: bold; }
     .txt-trans { color: var(--color-trans); font-weight: bold; }
 
-    /* --- AJUSTES MOBILE --- */
     @media (max-width: 768px) {
         .grid-dashboard { grid-template-columns: 1fr; }
         .stats { grid-template-columns: repeat(2, 1fr); }
         .name { font-size: 1.8rem; }
 
-        /* Legenda embaixo do outro no mobile */
         .legend-container {
             flex-direction: column;
             align-items: flex-start;
             padding-left: 20px;
         }
 
-        /* Operadores embaixo do outro no mobile */
         .muted {
             flex-direction: column;
             gap: 2px;
         }
-        
-        .muted span.separator { display: none; } /* Esconde o | no mobile */
+
+        .muted span.separator { display: none; }
     }
 </style>
 </head>
