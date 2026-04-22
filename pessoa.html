@@ -19,10 +19,27 @@
 
     body {
         background-color: var(--bg-dark);
+        background-image: url('img/fundo1.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
         font-family: 'Inter', sans-serif;
         color: #fff;
         margin: 0;
         padding: 20px;
+        position: relative;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 5, 7, 0.45);
+        backdrop-filter: blur(3px);
+        z-index: -1;
     }
 
     .container {

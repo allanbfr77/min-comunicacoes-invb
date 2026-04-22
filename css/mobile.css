@@ -1,0 +1,458 @@
+/* ============================================================
+   MOBILE.CSS
+   Todos os media queries, organizados por componente.
+   Breakpoints: 768px (tablet/mobile) e 480px (pequenos)
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   DESKTOP: garante que elementos mobile
+   não apareçam em telas maiores
+══════════════════════════════════════════ */
+@media (min-width: 769px) {
+  .menu-hamburger-mobile,
+  .menu-overlay-mobile {
+    display: none !important;
+  }
+
+  /* Tabela: reset completo para formato horizontal */
+  .tech-table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(10px);
+    table-layout: fixed !important;
+  }
+
+  .tech-table thead { display: table-header-group !important; }
+  .tech-table tr    { display: table-row !important; position: static !important; }
+
+  .tech-table th,
+  .tech-table td {
+    display: table-cell !important;
+    position: static !important;
+    padding: 15px 10px !important;
+    text-align: left !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    vertical-align: middle !important;
+    width: auto !important;
+    color: #ffffff !important;
+  }
+
+  /* Remove pseudo-elementos do mobile */
+  .tech-table td::before,
+  .tech-table td::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  /* Força cor branca nos nomes */
+  .tech-table td span,
+  .tech-table td strong {
+    color: #ffffff !important;
+  }
+}
+
+/* ══════════════════════════════════════════
+   MOBILE GERAL (≤ 768px)
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Navbar ── */
+  header nav, .navbar-links, .menu-horizontal, .nav-links {
+    display: none !important;
+  }
+
+  /* ── Container e layout ── */
+  .container {
+    margin: 20px auto;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .page-header h1 {
+    letter-spacing: -0.5px;
+  }
+
+  /* ── Glass card ── */
+  .glass-card {
+    padding: 24px;
+  }
+
+  .glass-card,
+  .glass-card * {
+    color: #ffffff !important;
+  }
+
+  /* ── Card missão ── */
+  .glass-card.main-hero {
+    margin-top: 10px;
+    width: 95%;
+    padding: 20px;
+  }
+
+  .main-hero {
+    width: 90%;
+    max-width: 450px;
+    margin: 40px auto;
+    position: relative;
+    left: 0;
+    transform: none;
+  }
+
+  /* ── Hero home ── */
+  body.inicio .hero-home {
+    display: flex;
+  }
+
+  body.inicio #main-page-header {
+    display: none;
+  }
+
+  .hero-home {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px 20px 200px 20px;
+    box-sizing: border-box;
+  }
+
+  .hero-home h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    font-weight: 800;
+  }
+
+  .hero-home .slogan {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 80%;
+  }
+
+  /* ── Textos ── */
+  .hero-text    { font-size: 0.95rem; }
+  .section-title { font-size: 1.5rem; }
+
+  /* ── Parágrafo dourado na home (fora do card) ── */
+  #inicio p:not(.glass-card p) {
+    color: var(--accent) !important;
+  }
+
+  /* ── Hidden element (aparece ao scroll) ── */
+  .hidden-element {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(5px);
+  }
+
+  .hidden-element.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* ── Hambúrguer ── */
+  .menu-hamburger-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    position: fixed;
+    top: 25px;
+    right: 20px;
+    z-index: 10000;
+    cursor: pointer;
+  }
+
+  .menu-hamburger-mobile span {
+    height: 3px;
+    width: 100%;
+    background-color: #f1c40f;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    transform-origin: left center;
+  }
+
+  .menu-hamburger-mobile.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: -2px;
+    left: 5px;
+  }
+
+  .menu-hamburger-mobile.active span:nth-child(2) {
+    width: 0%;
+    opacity: 0;
+  }
+
+  .menu-hamburger-mobile.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 2px;
+    left: 5px;
+  }
+
+  /* ── Menu overlay mobile ── */
+  .menu-overlay-mobile {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu-overlay-mobile.active {
+    display: flex;
+  }
+
+  .nav-links-mobile {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  .nav-links-mobile li {
+    margin: 25px 0;
+  }
+
+  .nav-links-mobile a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+
+  /* ── Tabela: formato card ── */
+  .table-wrapper {
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .tech-table,
+  .tech-table tbody {
+    display: block !important;
+    background: transparent !important;
+  }
+
+  .tech-table {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .tech-table thead {
+    display: none !important;
+  }
+
+  .tech-table tr {
+    display: block !important;
+    position: relative !important;
+    margin-bottom: 20px !important;
+    padding: 78px 10px 15px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    overflow: hidden !important;
+  }
+
+  /* Culto — fixo no canto direito */
+  .tech-table td[data-label="Culto"] {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    left: auto !important;
+    font-weight: 800;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 2px !important;
+    width: max-content !important;
+    max-width: 48% !important;
+    text-align: right !important;
+    z-index: 2 !important;
+  }
+
+  /* Data — header direito */
+  .tech-table td[data-label="Data"] {
+    position: absolute !important;
+    top: 20px !important;
+    left: 20px !important;
+    right: auto !important;
+    font-weight: 800;
+    color: #ffffff !important;
+    font-size: 0.85rem;
+    text-align: left;
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    width: max-content !important;
+    max-width: 48% !important;
+    z-index: 2 !important;
+  }
+
+  .tech-table td[data-label="Data"] strong {
+    text-align: left !important;
+  }
+
+  .tech-table td[data-label="Culto"] .turno-badge {
+    display: block !important;
+    width: auto !important;
+    align-self: flex-end !important;
+    margin-left: auto !important;
+    text-align: right !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .tech-table td[data-label="Culto"]::before {
+    align-self: flex-end !important;
+    margin-left: auto !important;
+    text-align: right !important;
+  }
+
+  /* Linhas internas (Projeção, Som, Transmissão) */
+  .tech-table td:not([data-label="Data"]):not([data-label="Culto"]) {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 20px !important;
+    position: relative !important;
+    background: rgba(0, 0, 0, 0.1);
+    margin-bottom: 2px;
+    color: #fff !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+
+  /* Barra dourada lateral */
+  .tech-table td:not([data-label="Data"]):not([data-label="Culto"])::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 20%;
+    bottom: 20%;
+    width: 2px;
+    background: var(--accent);
+  }
+
+  /* Label da função */
+  .tech-table td:not([data-label="Data"]):not([data-label="Culto"])::before {
+    content: attr(data-label);
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+
+  /* ── Busca ── */
+  .btn-lupa-interna {
+    right: 12px;
+  }
+
+  .btn-lupa-interna svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ── Escala semanal: evita sobreposição com footer ── */
+  #escala-semanal-container {
+    padding-bottom: 90px;
+  }
+
+  /* ── Mapa de Demandas ── */
+  .demanda-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 10px !important;
+  }
+
+  .demanda-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .demanda-card.open {
+    min-height: 80vh !important;
+    background: rgba(15, 15, 15, 0.98) !important;
+    border-color: var(--accent) !important;
+    z-index: 10;
+  }
+
+  .demanda-header {
+    padding: 22px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .demanda-body {
+    max-height: 0;
+    opacity: 0;
+    overflow-y: auto;
+    transition: all 0.5s ease;
+  }
+
+  .demanda-card.open .demanda-body {
+    max-height: 70vh !important;
+    opacity: 1 !important;
+    padding: 10px 20px 40px 20px !important;
+  }
+
+  .demanda-card.open .demanda-arrow {
+    transform: rotate(45deg);
+    color: #ff4d4d;
+  }
+}
+
+/* ══════════════════════════════════════════
+   TELAS PEQUENAS (≤ 480px)
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .nav-links li {
+    font-size: 0.75rem;
+  }
+
+  .resumo-card strong {
+    font-size: 1.1rem;
+  }
+}

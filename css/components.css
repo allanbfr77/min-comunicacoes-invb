@@ -1,0 +1,611 @@
+/* ============================================================
+   COMPONENTS.CSS
+   Cards de escala, tabela mensal, botões, busca,
+   modal de login, downloads, mapa de demandas
+   ============================================================ */
+
+/* ══════════════════════════════════════════
+   GLASS EFFECT (compartilhado)
+══════════════════════════════════════════ */
+.glass-card, .escala-card, .resumo-card, .tech-table {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+}
+
+/* ══════════════════════════════════════════
+   RESUMO (topo da escala semanal)
+══════════════════════════════════════════ */
+.escala-resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.resumo-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.resumo-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.resumo-card strong {
+  display: block;
+  font-size: 1.4rem;
+  margin-top: 6px;
+}
+
+.resumo-sub {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ══════════════════════════════════════════
+   CARDS SEMANAIS (tech-grid)
+══════════════════════════════════════════ */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  align-items: stretch;
+}
+
+.tech-grid > div {
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease;
+  cursor: pointer;
+}
+
+.tech-grid > div:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  padding: 15px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-header .titulo-culto,
+.card-header span:first-child {
+  flex: 1;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 900;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.card-header .card-date,
+.card-header span:last-child {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 700 !important;
+  color: #e5e7eb !important;
+  margin-left: auto;
+}
+
+.card-date {
+  font-weight: 600;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.card-body {
+  padding: 20px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.turno-badge {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.b-manha  { background: #3b82f6; }
+.b-noite  { background: #4f46e5; }
+.b-quarta { background: #64748b; }
+
+.role {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--accent);
+  padding: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 55px;
+  margin-bottom: 8px;
+}
+
+.role:hover {
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateX(5px);
+}
+
+.role-label {
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.role-name {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.escala-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.escala-card:hover {
+  transform: translateY(-12px);
+  z-index: 100;
+}
+
+/* ══════════════════════════════════════════
+   TABELA MENSAL (desktop)
+══════════════════════════════════════════ */
+.table-wrapper {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  width: 100%;
+}
+
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  display: table;
+}
+
+.tech-table th {
+  text-align: left;
+  padding: 18px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tech-table tr {
+  background: transparent !important;
+}
+
+.tech-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.tech-table tr:hover td {
+  background: rgba(212, 175, 55, 0.05);
+  color: #fff;
+}
+
+.tech-table td {
+  padding: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s;
+  color: var(--text-primary);
+  vertical-align: middle;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.tech-table td:first-child {
+  color: #d1d5db;
+  font-weight: 600;
+}
+
+/* Cores dos operadores (global — vale mobile e desktop) */
+.tech-table td[data-label="Projeção"]   { color: var(--accent) !important;  font-weight: 700; }
+.tech-table td[data-label="Mesa de Som"] { color: #00fbff !important;        font-weight: 700; }
+.tech-table td[data-label="Transmissão"] { color: #00ff88 !important;        font-weight: 700; }
+.tech-table td[data-label="Data"],
+.tech-table td[data-label="Culto"]       { color: #e5e7eb !important;        font-weight: 800; }
+
+/* Label data-label (mobile, sobrescrito no desktop) */
+.tech-table td::before {
+  content: attr(data-label);
+  display: block;
+  font-size: 0.7rem;
+  color: #888;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* Forçar itens "passados" sem esmaecimento */
+.tech-table tr, .escala-card, .resumo-card {
+  opacity: 1 !important;
+  filter: none !important;
+  color: var(--text-primary) !important;
+}
+
+.tech-table tr.proximo-culto,
+.tech-table tr.active { background: transparent !important; }
+
+.passado, .inactive, .past-date {
+  opacity: 1 !important;
+  filter: none !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* ══════════════════════════════════════════
+   BOTÕES
+══════════════════════════════════════════ */
+.btn-action {
+  background: var(--accent-dark);
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-action:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--accent-dark);
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+/* Botão de download da escala (SVG) */
+button[onclick*="salvarEscalaComoImagem"] {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+  padding: 10px !important;
+  width: 44px;
+  height: 44px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+
+button[onclick*="salvarEscalaComoImagem"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+button[onclick*="salvarEscalaComoImagem"]:hover {
+  transform: scale(1.15);
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+button[onclick*="salvarEscalaComoImagem"] svg {
+  stroke: var(--text-primary);
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+/* ══════════════════════════════════════════
+   BUSCA
+══════════════════════════════════════════ */
+.search-box {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  box-sizing: border-box;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-primary);
+}
+
+.btn-lupa-interna {
+  position: absolute;
+  right: 12px;
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  box-shadow: none !important;
+  z-index: 2;
+}
+
+.btn-lupa-interna svg {
+  stroke: white;
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════════════════
+   MODAL DE LOGIN
+══════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #0a0a0c !important;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.password-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#senhaInput {
+  padding-right: 40px;
+}
+
+#togglePassword:hover {
+  opacity: 1;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-entrar {
+  flex: 2;
+  background: #86840f;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-entrar:hover {
+  background: #a5a312;
+}
+
+.btn-cancelar {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  color: #bbb;
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* ══════════════════════════════════════════
+   DOWNLOADS
+══════════════════════════════════════════ */
+.download-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.card-download {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.card-download:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #86840f;
+}
+
+.icon-download {
+  font-size: 2.5rem;
+}
+
+.info-download {
+  flex-grow: 1;
+}
+
+.info-download h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.info-download p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.btn-baixar {
+  background: #86840f;
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-baixar:hover {
+  background: #a5a312;
+}
+
+/* ══════════════════════════════════════════
+   MAPA DE DEMANDAS
+══════════════════════════════════════════ */
+.demanda-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin: 25px 0 35px;
+}
+
+.demanda-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.demanda-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.demanda-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.demanda-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.demanda-arrow {
+  transition: transform 0.3s ease;
+}
+
+.demanda-card.open .demanda-arrow {
+  transform: rotate(45deg);
+}
+
+.demanda-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 0.35s ease, opacity 0.35s ease, padding 0.35s ease;
+}
+
+.demanda-body h3.section-subtitle {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+/* Desktop também usa .open via JS para garantir 1 card por vez */
+
+/* Fecha o hover em touch (mobile usa JS com .open) */
+@media (hover: none), (pointer: coarse) {
+  .demanda-card:hover .demanda-body {
+    max-height: 0;
+    opacity: 0;
+    padding: 0 24px;
+  }
+}
+
+/* Abre via JS em qualquer dispositivo */
+.demanda-card.open .demanda-body {
+  max-height: 1000px;
+  opacity: 1;
+  padding: 0 24px 24px;
+}

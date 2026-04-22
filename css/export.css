@@ -1,0 +1,136 @@
+/* ============================================================
+   EXPORT.CSS
+   Estilos exclusivos para geração de imagem (html2canvas).
+   Estas classes são aplicadas ao clone via JS antes do render.
+   ============================================================ */
+
+/* ── Configuração geral do container exportado ── */
+.export-mobile,
+.export-web {
+  background-color: #050507 !important;
+  padding: 35px !important;
+}
+
+.export-mobile { width: 1450px !important; }
+.export-web    { width: 1300px !important; }
+
+/* ══════════════════════════════════════════
+   VERSÃO WEB — tabela horizontal
+══════════════════════════════════════════ */
+.export-web .tech-table {
+  display: table !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.export-web .tech-table tr {
+  display: table-row !important;
+  background: transparent !important;
+}
+
+.export-web .tech-table td {
+  display: table-cell !important;
+  padding: 15px 10px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  vertical-align: middle !important;
+  text-align: left !important;
+}
+
+/* Remove labels duplicados na versão web */
+.export-web .tech-table td::before {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════
+   VERSÃO MOBILE — cards em grade 3 colunas
+══════════════════════════════════════════ */
+.export-mobile .tech-table tbody {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 25px !important;
+}
+
+.export-mobile .tech-table tr {
+  display: block !important;
+  position: relative !important;
+  background: #111112 !important;
+  padding: 84px 20px 20px 20px !important;
+  border-radius: 15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  margin-bottom: 15px !important;
+}
+
+/* Culto — canto superior direito */
+.export-mobile .tech-table td:nth-child(2) {
+  position: absolute !important;
+  top: 25px !important;
+  right: 20px !important;
+  left: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  width: max-content !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  text-align: right !important;
+  border: none !important;
+}
+
+/* Data — canto superior esquerdo */
+.export-mobile .tech-table td:nth-child(1) {
+  position: absolute !important;
+  top: 25px !important;
+  left: 20px !important;
+  right: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  width: max-content !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  text-align: left !important;
+  border: none !important;
+}
+
+/* Linhas de cargos (Projeção, Som, Transmissão) */
+.export-mobile .tech-table td:not(:nth-child(1)):not(:nth-child(2)) {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding: 12px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  box-sizing: border-box !important;
+}
+
+/* Mais respiro entre a barra dourada e o nome da função */
+.export-mobile .tech-table td:not(:nth-child(1)):not(:nth-child(2))::before {
+  margin-left: 18px !important;
+}
+
+.export-mobile .tech-table td:not(:nth-child(1)):not(:nth-child(2))::after {
+  left: 10px !important;
+}
+
+/* Texto interno (nomes) */
+.export-mobile .tech-table td span,
+.export-mobile .tech-table td strong {
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+}
+
+/* Cores das colunas de função */
+.tech-table td:nth-child(3),
+.export-mobile .tech-table td:nth-child(3)::before { color: #ffffff !important; }
+.tech-table td:nth-child(4),
+.export-mobile .tech-table td:nth-child(4)::before { color: #ffffff !important; }
+.tech-table td:nth-child(5),
+.export-mobile .tech-table td:nth-child(5)::before { color: #ffffff !important; }

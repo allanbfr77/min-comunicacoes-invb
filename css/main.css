@@ -1,0 +1,15 @@
+/* ============================================================
+   MAIN.CSS
+   Ponto de entrada — importa todos os módulos CSS.
+   Substitua o <link> do style.css no HTML por este arquivo.
+
+   Ordem importa: base → layout → components → export → mobile
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap');
+
+@import 'base.css';       /* Variáveis, reset, body, tipografia, animações */
+@import 'layout.css';     /* Navbar, container, header, hero, social footer */
+@import 'components.css'; /* Cards, tabela, botões, busca, modal, downloads, demandas */
+@import 'export.css';     /* Estilos de exportação de imagem (html2canvas) */
+@import 'mobile.css';     /* Todos os media queries */

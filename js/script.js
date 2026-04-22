@@ -168,6 +168,12 @@ function mostrarSecao(id, elemento) {
 }
     
 function executarTrocaDePagina(id, elemento) {
+    // Mantém comportamento consistente da home-only UI (ex.: social-footer)
+    document.body.classList.remove('inicio');
+    if (id === 'inicio') {
+        document.body.classList.add('inicio');
+    }
+
     // Esconde absolutamente todas as seções
     document.querySelectorAll('.secao').forEach(s => s.style.display = 'none');
     
@@ -450,15 +456,58 @@ if (abrirEscala === "true") {
     mostrarSecao('inicio');
 }
 
-    document.addEventListener('click', function (e) {
-        const header = e.target.closest('.demanda-header');
-        if (!header) return;
-        const cardAtual = header.closest('.demanda-card');
-        document.querySelectorAll('.demanda-card').forEach(card => {
-            if (card !== cardAtual) card.classList.remove('open');
+    const demandaCards = Array.from(document.querySelectorAll('.demanda-card'));
+    const demandaGrid = document.querySelector('.demanda-grid');
+    const isMobileView = window.innerWidth <= 768;
+    const isDesktopMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches && !isMobileView;
+
+    function setCardAberto(cardSelecionado) {
+        demandaCards.forEach((card) => {
+            card.classList.toggle('open', card === cardSelecionado);
         });
-        cardAtual.classList.toggle('open');
+    }
+
+    // Clique no próprio header.
+    demandaCards.forEach((card) => {
+        const header = card.querySelector('.demanda-header');
+        if (!header) return;
+
+        header.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (isMobileView) {
+                const jaEstaAberto = card.classList.contains('open');
+                if (jaEstaAberto) {
+                    card.classList.remove('open');
+                } else {
+                    setCardAberto(card);
+                }
+                return;
+            }
+
+            setCardAberto(card);
+        });
     });
+
+    // Desktop (mouse): hover exclusivo, nunca abre dois cards ao mesmo tempo.
+    if (isDesktopMouse) {
+        demandaCards.forEach((card) => {
+            card.addEventListener('mouseenter', () => {
+                setCardAberto(card);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('open');
+            });
+        });
+
+        if (demandaGrid) {
+            demandaGrid.addEventListener('mouseleave', () => {
+                setCardAberto(null);
+            });
+        }
+    }
 
     const inputBusca = document.getElementById("searchInput");
     if (inputBusca) {
@@ -511,9 +560,8 @@ async function salvarEscalaComoImagem(event) {
         clone.querySelectorAll('tr').forEach(tr => {
             const tds = tr.querySelectorAll('td');
             if (tds.length >= 2) {
-                tds[0].style.display = "inline-flex";
-                tds[1].style.display = "inline-flex";
-                tds[1].style.marginLeft = "15px";
+                // Mantém apenas proteção de quebra para os cabeçalhos.
+                // O posicionamento (Data esquerda / Culto direita) vem do export.css.
                 tds[0].style.whiteSpace = "nowrap";
                 tds[1].style.whiteSpace = "nowrap";
             }
@@ -619,4 +667,3 @@ const target = document.querySelector(".main-hero");
 if (target) {
     observer.observe(target);
 }
-
