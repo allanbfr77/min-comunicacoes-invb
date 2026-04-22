@@ -10,7 +10,7 @@
 </head>
 
 <body class="dark-theme">
-    <div class="menu-hamburger-mobile" onclick="toggleMenu()">
+    <div class="menu-hamburger-mobile" onclick="toggleMenu()" role="button" tabindex="0" aria-label="Abrir ou fechar menu de navegação">
         <span></span>
         <span></span>
         <span></span>
@@ -18,11 +18,11 @@
 
 <nav class="menu-overlay-mobile" id="menuOverlay">
     <ul class="nav-links-mobile">
- <li><a href="#" onclick="mostrarSecao('inicio'); fecharMenuDepois();">Início</a></li>
-<li><a href="#" onclick="mostrarSecao('escala'); fecharMenuDepois();">Escala</a></li>
-<li><a href="#" onclick="mostrarSecao('projetos'); fecharMenuDepois();">Projetos</a></li>
-<li><a href="#" onclick="mostrarSecao('links'); fecharMenuDepois();">Downloads</a></li>
-<li><a href="#" onclick="mostrarSecao('mapa-demandas'); fecharMenuDepois();">Mapa de Demandas</a></li>
+ <li><a href="#" onclick="mostrarSecao('inicio');">Início</a></li>
+<li><a href="#" onclick="mostrarSecao('escala');">Escala</a></li>
+<li><a href="#" onclick="mostrarSecao('projetos');">Projetos</a></li>
+<li><a href="#" onclick="mostrarSecao('links');">Downloads</a></li>
+<li><a href="#" onclick="mostrarSecao('mapa-demandas');">Mapa de Demandas</a></li>
     </ul>
 </nav>
     <nav class="navbar">
@@ -47,10 +47,10 @@
          </p>
      </div>
             <div class="header-actions">
-                <button id="btn-ver-mensal" class="btn-action" onclick="mostrarSecao('mensal')" style="display:none;">
+                <button id="btn-ver-mensal" class="btn-action" onclick="mostrarSecao('mensal')" style="display:none;" aria-label="Abrir escala mensal completa">
                     Ver Mês Completo →
                 </button>
-                <button id="btn-voltar-escala" class="btn-secondary" onclick="mostrarSecao('escala')" style="display:none;">
+                <button id="btn-voltar-escala" class="btn-secondary" onclick="mostrarSecao('escala')" style="display:none;" aria-label="Voltar para escala semanal">
                     ← Voltar para a Semana
                 </button>
             </div>
@@ -95,11 +95,10 @@
 
 <div style="margin-bottom:20px;">
     <div class="search-box" style="position: relative !important; width: 100% !important; display: block !important;">
-        <input type="text" id="searchInput" placeholder="Pesquise pelo primeiro nome (ex: ALAN, JEAN...)" 
-               onkeyup="filtrarMembros()" 
+        <input type="text" id="searchInput" placeholder="Pesquise pelo primeiro nome (ex: ALAN, JEAN...)" aria-label="Pesquisar membro pelo primeiro nome"
                style="width: 100% !important; padding: 12px 45px 12px 15px !important; box-sizing: border-box !important; display: block !important; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 8px;">
         
-        <button onclick="buscarPessoa()" class="btn-lupa-interna" 
+        <button onclick="buscarPessoa()" class="btn-lupa-interna" aria-label="Abrir painel do membro pesquisado"
                 style="position: absolute !important; right: 12px !important; top: 50% !important; transform: translateY(-50%) !important; background: none !important; border: none !important; padding: 0 !important; margin: 0 !important; cursor: pointer !important; line-height: 0 !important; display: flex !important; align-items: center !important; left: auto !important; width: auto !important; height: auto !important;">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.6;">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -113,7 +112,7 @@
 
 <section id="mensal" class="secao" style="display:none;">
     <div style="margin-bottom: 20px; text-align: right;">
-   <button onclick="salvarEscalaComoImagem(event)" class="btn-action" title="Baixar escala como imagem">
+   <button onclick="salvarEscalaComoImagem(event)" class="btn-action" title="Baixar escala como imagem" aria-label="Baixar escala mensal como imagem">
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7 10 12 15 17 10"/>
@@ -225,35 +224,51 @@
     <section id="links" class="secao" style="display: none;">
     <div class="download-container">
         <div class="card-download">
-            <div class="icon-download">📄</div>
+            <div class="icon-download" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M8 3h6l4 4v14H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M14 3v4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
             <div class="info-download">
                 <h4>Identidade Visual</h4>
                 <p>Logos e manuais do ministério.</p>
             </div>
-            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+            <a href="downloads/manual-de-identidade-visual-nova-vida.pdf" target="_blank" class="btn-baixar" download aria-label="Baixar manual de identidade visual">Baixar</a>
         </div>
 
         <div class="card-download">
-            <div class="icon-download">🎥</div>
-            <div class="info-download">
-                <h4>Vinhetas 2024</h4>
-                <p>Vídeos de abertura para os cultos.</p>
+            <div class="icon-download" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="7" width="13" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M16 10l5-3v10l-5-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
-            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+            <div class="info-download">
+                <h4>Vinhetas p/ o Youtube</h4>
+                <p>Arquivo oficial de abertura para YouTube.</p>
+            </div>
+            <a href="downloads/VINHETA%20ABERTURA%20YT.mp4" target="_blank" class="btn-baixar" download aria-label="Baixar vinheta de abertura para YouTube">Baixar</a>
         </div>
 
         <div class="card-download">
-            <div class="icon-download">🎵</div>
-            <div class="info-download">
-                <h4>Playbacks</h4>
-                <p>Arquivos de áudio para ensaios.</p>
+            <div class="icon-download" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M14 4v10.5a3 3 0 1 1-1.5-2.6V6.5L20 5v7.5a3 3 0 1 1-1.5-2.6V3.5L14 4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
-            <a href="LINK_DO_SEU_ARQUIVO_AQUI" target="_blank" class="btn-baixar">Baixar</a>
+            <div class="info-download">
+                <h4>Vinhetas p/ o Youtube</h4>
+                <p>Arquivo oficial de encerramento para YouTube.</p>
+            </div>
+            <a href="downloads/VINHETA%20ENCERRAMENTO%20YT.mp4" target="_blank" class="btn-baixar" download aria-label="Baixar vinheta de encerramento para YouTube">Baixar</a>
         </div>
     </div>
 </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/navegacao.js" defer></script>
+    <script src="js/escala.js" defer></script>
+    <script src="js/downloads.js" defer></script>
     
 <div class="social-footer inicio-only">
     <a href="https://invbotafogo.com.br/" target="_blank" class="social-item">
@@ -310,24 +325,6 @@
     </div>
 </div>
 
-<script>
-    
-function toggleMenu() {
-    const menu = document.getElementById('menuOverlay');
-    const icon = document.querySelector('.menu-hamburger-mobile');
-    
-    // Liga/Desliga as classes 'active'
-    menu.classList.toggle('active');
-    icon.classList.toggle('active');
-    
-    // Trava o scroll da página ao abrir o menu
-    if (menu.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = 'auto';
-    }
-}
-    </script>
 </body>
 
 </html>
