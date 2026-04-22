@@ -2284,34 +2284,39 @@ div.glass-card.main-hero {
 }
 
 /* Mira especificamente no botão que tem a função de salvar imagem */
+/* ===== BOTÃO DE DOWNLOAD DA ESCALA ===== */
 button[onclick*="salvarEscalaComoImagem"] {
-    background: transparent !important; /* Remove o fundo amarelo/bronze */
-    color: #ffffff !important;           /* Deixa o ícone branco */
+    background: transparent !important;
+    color: #ffffff !important;
     border: none !important;
-    padding: 10px !important;            /* Ajusta o espaçamento ao redor do ícone */
-    font-size: 1.5rem !important;        /* Aumenta o tamanho do ícone */
-    text-indent: -9999px;                /* Esconde o texto "SALVAR COMO IMAGEM" */
-    width: 50px;                         /* Define uma largura fixa para ser circular */
-    height: 50px;                        /* Define uma altura fixa */
+    padding: 10px !important;
+    width: 44px;
+    height: 44px;
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease;
-}
-
-/* Faz o ícone reaparecer (já que o text-indent escondeu tudo) */
-button[onclick*="salvarEscalaComoImagem"]::before {
-    content: '📸'; /* Ou o código do seu ícone de download/camera */
-    text-indent: 0;
-    display: block;
-}
-
-/* Efeito de destaque ao passar o mouse */
-button[onclick*="salvarEscalaComoImagem"]:hover {
-    transform: scale(1.2);
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.1) !important; /* Leve brilho ao fundo */
     border-radius: 50%;
+    transition: transform 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+}
+
+/* Remove o pseudo-elemento que causava o ícone duplicado */
+button[onclick*="salvarEscalaComoImagem"]::before {
+    content: none !important;
+    display: none !important;
+}
+
+button[onclick*="salvarEscalaComoImagem"]:hover {
+    transform: scale(1.15);
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Garante que o SVG interno herde a cor branca */
+button[onclick*="salvarEscalaComoImagem"] svg {
+    stroke: #ffffff;
+    width: 32px;
+    height: 32px;
+    display: block;
 }
 
 @media (max-width: 768px) {
